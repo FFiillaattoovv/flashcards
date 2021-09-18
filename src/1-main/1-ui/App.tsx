@@ -5,6 +5,8 @@ import {Provider} from 'react-redux';
 import Main from './Main';
 import {store} from '../2-bll/store';
 
+// Initial commit
+
 function App() {
     return (
         <div className="App">
