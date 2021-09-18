@@ -1,0 +1,15 @@
+.signUpContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.signUpContainer .signUpForm{
+    border: 1px solid darkgrey;
+    /*background-color: darkgrey;*/
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
