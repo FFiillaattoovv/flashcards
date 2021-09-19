@@ -13,6 +13,7 @@ function Login() {
     const dispatch = useDispatch()
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
     const error = useSelector<AppRootStateType, string>(state => state.auth.error)
+    const isLoading = useSelector<AppRootStateType, boolean>(state => state.auth.isLoading)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -30,6 +31,7 @@ function Login() {
     return (
         <div className={style.loginBlock}>
             <h1>Login</h1>
+            {isLoading ? <div style={{color: 'green'}}>Loading...</div> : ''}
             <SuperInputText value={email} onChange={emailHandler}/>
             <SuperInputText value={password} onChange={passwordHandler}/>
             <SuperCheckbox checked={rememberMe} onClick={rememberMeHandler}>Remember me</SuperCheckbox>
