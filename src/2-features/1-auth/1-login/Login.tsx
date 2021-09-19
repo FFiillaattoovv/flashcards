@@ -4,6 +4,7 @@ import SuperCheckbox from '../../../1-main/1-ui/common/SuperCheckbox/SuperCheckb
 import SuperButton from '../../../1-main/1-ui/common/SuperButton/SuperButton';
 import { NavLink } from 'react-router-dom';
 import {PATH} from '../../../1-main/1-ui/routes/Routes';
+import style from './Login.module.css'
 
 function Login() {
     const [email, setEmail] = useState('')
@@ -17,7 +18,7 @@ function Login() {
 
     }
     return (
-        <div className="App">
+        <div className={style.loginBlock}>
             <h1>Login</h1>
             <SuperInputText value={email} onChange={emailHandler}/>
             <SuperInputText value={password} onChange={passwordHandler}/>
