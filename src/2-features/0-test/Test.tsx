@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from 'react';
-import SuperInputText from "../../1-main/1-ui/common/SuperInputText/SuperInputText";
-import SuperButton from "../../1-main/1-ui/common/SuperButton/SuperButton";
-import SuperCheckbox from "../../1-main/1-ui/common/SuperCheckbox/SuperCheckbox";
+import SuperInputText from "../1-auth/2-signUp/sign-up-common/SuperInputText/SuperInputText";
+import SuperButton from "../1-auth/2-signUp/sign-up-common/SuperButton/SuperButton";
+import SuperCheckbox from "../1-auth/2-signUp/sign-up-common/SuperCheckbox/SuperCheckbox";
 
 
 const Test = () => {

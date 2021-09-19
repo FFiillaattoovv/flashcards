@@ -1,6 +1,6 @@
 .input:focus {
     outline: none;
-    border: 2px solid #99ff99;
+    /*border: 2px solid #99ff99;*/
 }
 
 .superInput {
@@ -14,9 +14,8 @@
     margin: 10px;
 
     /*background: #003300;*/
-    color: #99ff99;
-
-    border: 2px solid #99ff99;
+    /*color: #99ff99;*/
+    /*border: 2px solid #99ff99;*/
 }
 
 .error {

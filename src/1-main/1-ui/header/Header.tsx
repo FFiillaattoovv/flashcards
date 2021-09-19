@@ -2,7 +2,7 @@ import React from 'react';
 import style from './Header.module.css'
 
 import {PATH} from "../routes/Routes";
-import CustomNavLink from '../common/CustomNavLink/CustomNavLink';
+import CustomNavLink from '../../../2-features/1-auth/2-signUp/sign-up-common/CustomNavLink/CustomNavLink';
 
 function Header() {
     return (
