@@ -5,8 +5,11 @@ import SuperButton from '../../../1-main/1-ui/common/SuperButton/SuperButton';
 import { NavLink } from 'react-router-dom';
 import {PATH} from '../../../1-main/1-ui/routes/Routes';
 import style from './Login.module.css'
+import {loginSuccess} from '../../../1-main/2-bll/authReducer';
+import {useDispatch} from 'react-redux';
 
 function Login() {
+    const dispatch = useDispatch()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [rememberMe, setRememberMe] = useState(false)
@@ -15,7 +18,7 @@ function Login() {
     const passwordHandler = (e: ChangeEvent<HTMLInputElement>) => setPassword(e.currentTarget.value)
     const rememberMeHandler = () => setRememberMe(!rememberMe)
     const loginHandler = () => {
-
+        dispatch(loginSuccess({email, password, rememberMe}))
     }
     return (
         <div className={style.loginBlock}>
