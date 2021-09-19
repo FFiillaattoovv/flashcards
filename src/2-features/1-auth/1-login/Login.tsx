@@ -30,15 +30,20 @@ function Login() {
     }
     return (
         <div className={style.loginBlock}>
-            <h1>Login</h1>
-            {isLoading ? <div style={{color: 'green'}}>Loading...</div> : ''}
-            <SuperInputText value={email} onChange={emailHandler}/>
-            <SuperInputText value={password} onChange={passwordHandler}/>
-            <SuperCheckbox checked={rememberMe} onClick={rememberMeHandler}>Remember me</SuperCheckbox>
-            <NavLink to={PATH.RESET_PASSWORD}>forgot</NavLink>
-            <SuperButton onClick={loginHandler}>Login</SuperButton>
-            <NavLink to={PATH.SIGN_UP}>sign up</NavLink>
-            {error ? <div style={{color: 'red'}}>{error}</div> : ''}
+            <div className={style.loginList}>
+                <h1 className={style.loginTitle}>Login</h1>
+                {isLoading ? <div style={{color: 'green'}}>Loading...</div> : ''}
+                <SuperInputText className={style.loginInput} placeholder={'Email'} value={email} onChange={emailHandler}/>
+                <SuperInputText className={style.loginInput} placeholder={'Password'} value={password} onChange={passwordHandler}/>
+                <div className={style.rememberBlock}>
+                    <SuperCheckbox checked={rememberMe} onClick={rememberMeHandler}>Remember me</SuperCheckbox>
+                    <NavLink to={PATH.RESET_PASSWORD} className={style.forgotLink} activeClassName={style.forgotLincActive}>Forgot password</NavLink>
+                </div>
+                <SuperButton className={style.loginButton} onClick={loginHandler}>Login</SuperButton>
+                <div className={style.loginText}>Don't have an account?</div>
+                <NavLink to={PATH.SIGN_UP} className={style.signUpLink} activeClassName={style.signUpLinkActive}>Sign Up</NavLink>
+                {error ? <div style={{color: 'red'}}>{error}</div> : ''}
+            </div>
         </div>
     );
 }
