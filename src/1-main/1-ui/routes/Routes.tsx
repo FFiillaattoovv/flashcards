@@ -15,7 +15,7 @@ export const PATH = {
     PROFILE: '/profile',
     RESET_PASSWORD: '/resetPassword',
     CHECK_EMAIL: '/checkEmail',
-    NEW_PASSWORD: '/newPassword',
+    NEW_PASSWORD: '/newPassword/:token',
     TEST: '/test'
 }
 
@@ -28,7 +28,7 @@ function Routes() {
                 <Route path={PATH.SIGN_UP} render={() => <SignUp/>}/>
                 <Route path={PATH.PROFILE} render={() => <Profile/>}/>
                 <Route path={PATH.RESET_PASSWORD} render={() => <ResetPassword/>}/>
-                <Route path={PATH.CHECK_EMAIL} render={() => <CheckEmail emailAddress={'example@gmail.com'}/>}/>
+                <Route path={PATH.CHECK_EMAIL} render={() => <CheckEmail/>}/>
                 <Route path={PATH.NEW_PASSWORD} render={() => <NewPassword/>}/>
                 <Route path={PATH.TEST} render={() => <Test/>}/>
                 <Route render={() => <Error404/>}/>

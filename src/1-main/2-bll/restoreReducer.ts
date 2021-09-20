@@ -4,7 +4,9 @@ import {ForgotRequestType, restoreAPI, SetNewPasswordRequestType} from "./restor
 type InitStateType = typeof initialState
 
 const initialState = {
-    email: null as string | null
+    email: null as string | null,
+    restoreEmailSendSuccess: false,
+    newPasswordSuccess: false
 }
 
 export const restoreReducer = (state: InitStateType = initialState, action: UnionRestoreAT) => {
@@ -12,22 +14,27 @@ export const restoreReducer = (state: InitStateType = initialState, action: Unio
         case "restore/SET-RECEIVER-EMAIL": {
             return {...state, email: action.email}
         }
-        case "restore/CLEAR-RECEIVER-EMAIL": {
-            return {...state, email: null}
+        case "restore/EMAIL-SEND-SUCCESS": {
+            return {...state, restoreEmailSendSuccess: action.success}
         }
+        case "restore/CHANGE-PASSWORD-SUCCESS":
+            return {...state, newPasswordSuccess: action.success}
         default:
             return state
     }
 }
 
-const recoveryMessage = `<div style="background-color: black; padding: 15px">Password recovery link: <a href="http://localhost:3000/flashcards#/newPassword/$token$">click here</a></div>`
-const recoveryMessageAddressFrom = `test-front-admin <ai73a@yandex.by>`
+const recoveryMessage = `<div style="padding: 15px">Password recovery link: <a href="http://localhost:3000/flashcards#/newPassword/$token$">click here</a></div>`
+const recoveryMessageAddressFrom = `NEKO ADMIN <ai73a@yandex.by>`
 //actions
 export const setReceiverEmailAC = (email: string) => {
     return {type: 'restore/SET-RECEIVER-EMAIL', email} as const
 }
-export const clearReceiverEmailAC = () => {
-    return {type: 'restore/CLEAR-RECEIVER-EMAIL'} as const
+export const emailSendSuccessAC = (success: boolean) => {
+    return {type: 'restore/EMAIL-SEND-SUCCESS', success} as const
+}
+export const changePasswordSuccessAC = (success: boolean) => {
+    return {type: 'restore/CHANGE-PASSWORD-SUCCESS', success} as const
 }
 //thunks
 export const forgotPasswordTC = (email: string) => async (dispatch: Dispatch<UnionRestoreAT>) => {
@@ -37,8 +44,10 @@ export const forgotPasswordTC = (email: string) => async (dispatch: Dispatch<Uni
             from: recoveryMessageAddressFrom,
             message: recoveryMessage
         }
-        await restoreAPI.forgotPassword(requestObj)
+        const response = await restoreAPI.forgotPassword(requestObj)
         dispatch(setReceiverEmailAC(email))
+        dispatch(emailSendSuccessAC(response.data.success))
+        dispatch(changePasswordSuccessAC(false))
     } catch(e) {
         console.log(e)
     }
@@ -51,13 +60,14 @@ export const setNewPasswordTC = (password: string, token: string) => async (disp
             resetPasswordToken: token
         }
         await restoreAPI.setNewPassword(requestObj)
-        dispatch(clearReceiverEmailAC())
+        dispatch(changePasswordSuccessAC(true))
     } catch (e) {
         console.log(e)
     }
 }
 
 //action types
-export type UnionRestoreAT = SetReceiverEmailAT | ClearReceiverEmailAT
+export type UnionRestoreAT = SetReceiverEmailAT | EmailSendSuccessACAT | ChangePasswordSuccessAT
 type SetReceiverEmailAT = ReturnType<typeof setReceiverEmailAC>
-type ClearReceiverEmailAT = ReturnType<typeof clearReceiverEmailAC>
+type EmailSendSuccessACAT = ReturnType<typeof emailSendSuccessAC>
+type ChangePasswordSuccessAT = ReturnType<typeof changePasswordSuccessAC>
