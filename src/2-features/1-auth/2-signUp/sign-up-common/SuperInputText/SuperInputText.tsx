@@ -42,18 +42,20 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = React.memo((
     const finalInputClassName = `${s.input} ${error ? s.errorInput : s.superInput} ${className}`
 
     return (
-        <>
+        <div className={s.group}>
             <input
                 type={type}
+                required
                 onChange={onChangeCallback}
                 onKeyPress={onKeyPressCallback}
-                className={finalInputClassName}
-                placeholder={placeholder}
+                // className={finalInputClassName}
+                // placeholder={placeholder}
 
                 {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
             />
+            <label>{placeholder}</label>
             {error && <span className={finalSpanClassName}>{error}</span>}
-        </>
+        </div>
     )
 })
 
