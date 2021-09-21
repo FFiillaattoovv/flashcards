@@ -1,0 +1,65 @@
+/* form starting stylings ------------------------------- */
+.group {
+    position: relative;
+    margin-bottom: 45px;
+}
+
+input {
+    background: transparent;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #757575;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* LABEL ======================================= */
+label {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label, input:valid ~ label {
+    top: -20px;
+    font-size: 14px;
+    color: #5264AE;
+}
+
+.superInput {
+    margin: 10px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: rgba(36, 37, 74, 0.2) 2px solid;
+    width: 80%;
+    /*background: #003300;*/
+    /*color: #99ff99;*/
+}
+
+.errorInput {
+    margin: 10px;
+
+    /*background: #003300;*/
+    /*color: #99ff99;*/
+    /*border: 2px solid #99ff99;*/
+}
+
+.error {
+    color: #dd3355;
+    height: 21px;
+    margin-left: 10px;
+}

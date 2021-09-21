@@ -8,20 +8,20 @@ type SuperButtonPropsType = DefaultButtonPropsType & {
     red?: boolean
 }
 
-const SuperButton: React.FC<SuperButtonPropsType> = (
+const SuperButton: React.FC<SuperButtonPropsType> = React.memo((
     {
         red, className,
         ...restProps// все остальные пропсы попадут в объект restProps, там же будет children
     }
 ) => {
     const finalClassName = `${red ? s.red : s.default} ${className}`
-
+    console.log('SB')
     return (
         <button
             className={finalClassName}
             {...restProps} // отдаём кнопке остальные пропсы если они есть (children там внутри)
         />
     )
-}
+})
 
 export default SuperButton

@@ -1,15 +1,16 @@
 import React from 'react';
-import './App.css';
+import './App.module.css';
 import {HashRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import Main from './Main';
 import {store} from '../2-bll/store';
+import style from './App.module.css'
 
 // Initial commit
 
 function App() {
     return (
-        <div className="App">
+        <div className={style.App}>
             <HashRouter>
                 <Provider store={store}>
                     <Main/>

@@ -9,11 +9,12 @@ type SuperInputTextPropsType = DefaultInputPropsType & {
     onEnter?: () => void
     error?: string
     spanClassName?: string
+    type?: string
 }
 
-const SuperInputText: React.FC<SuperInputTextPropsType> = (
+const SuperInputText: React.FC<SuperInputTextPropsType> = React.memo((
     {
-        type, // достаём и игнорируем чтоб нельзя было задать другой тип инпута
+        placeholder, type,
         onChange, onChangeText,
         onKeyPress, onEnter,
         error,
@@ -22,6 +23,7 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
         ...restProps// все остальные пропсы попадут в объект restProps
     }
 ) => {
+    console.log(placeholder)
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
         onChange // если есть пропс onChange
         && onChange(e) // то передать ему е (поскольку onChange не обязателен)
@@ -40,18 +42,21 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
     const finalInputClassName = `${s.input} ${error ? s.errorInput : s.superInput} ${className}`
 
     return (
-        <>
+        <div className={s.group}>
             <input
-                type={'text'}
+                type={type}
+                required
                 onChange={onChangeCallback}
                 onKeyPress={onKeyPressCallback}
-                className={finalInputClassName}
+                // className={finalInputClassName}
+                // placeholder={placeholder}
 
                 {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
             />
+            <label>{placeholder}</label>
             {error && <span className={finalSpanClassName}>{error}</span>}
-        </>
+        </div>
     )
-}
+})
 
 export default SuperInputText
