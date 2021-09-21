@@ -10,7 +10,7 @@ function Header() {
             <CustomNavLink title={'profile'} to={PATH.PROFILE}/>
             <CustomNavLink title={'sign-up'} to={PATH.SIGN_UP}/>
             <CustomNavLink title={'login'} to={PATH.LOGIN}/>
-            <CustomNavLink title={'new password'} to={PATH.NEW_PASSWORD}/>
+            {/*<CustomNavLink title={'new password'} to={PATH.NEW_PASSWORD}/>*/}
             <CustomNavLink title={'reset password'} to={PATH.RESET_PASSWORD}/>
             <CustomNavLink title={'test'} to={PATH.TEST}/>
         </div>
