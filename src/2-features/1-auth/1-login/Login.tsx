@@ -1,13 +1,13 @@
 import React, {ChangeEvent, useState} from 'react';
-import SuperInputText from '../../../1-main/1-ui/common/SuperInputText/SuperInputText';
-import SuperCheckbox from '../../../1-main/1-ui/common/SuperCheckbox/SuperCheckbox';
-import SuperButton from '../../../1-main/1-ui/common/SuperButton/SuperButton';
 import {NavLink, Redirect} from 'react-router-dom';
 import {PATH} from '../../../1-main/1-ui/routes/Routes';
 import style from './Login.module.css'
 import {loginSuccess} from '../../../1-main/2-bll/authReducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../1-main/2-bll/store';
+import SuperInputText from "../2-signUp/sign-up-common/SuperInputText/SuperInputText";
+import SuperCheckbox from "../2-signUp/sign-up-common/SuperCheckbox/SuperCheckbox";
+import SuperButton from "../2-signUp/sign-up-common/SuperButton/SuperButton";
 
 function Login() {
     const dispatch = useDispatch()
