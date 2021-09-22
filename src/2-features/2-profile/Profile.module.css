@@ -1,0 +1,419 @@
+.container {
+    position: absolute;
+    width: 1008px;
+    height: 636px;
+    left: 136px;
+    top: 124px;
+
+    background: #FEFEFF;
+    border-radius: 8px;
+}
+
+/*
+Main
+*/
+
+.main h1 {
+    position: absolute;
+    width: 173px;
+    height: 33px;
+    left: 288px;
+    top: 0;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 33px;
+
+    color: #2D2E46;
+}
+
+.main input {
+    position: absolute;
+    width: 669px;
+    height: 36px;
+    left: 300px;
+    top: 72px;
+
+    background: #ECECF9;
+    opacity: 0.5;
+    border: 1px solid #635D80;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+/*
+List
+*/
+
+.main .list {
+    position: absolute;
+    float: left;
+    width: 669px;
+    height: 48px;
+    left: 300px;
+    top: 132px;
+
+    background: #ECECF9;
+}
+
+.main .list span{
+    margin: 35px;
+}
+
+.main .item {
+    position: absolute;
+    width: 669px;
+    height: 48px;
+    left: 300px;
+    top: 180px;
+
+    background: #FFFFFF;
+    border: 1px solid black;
+}
+
+.main .item2 {
+    position: absolute;
+    width: 669px;
+    height: 48px;
+    left: 300px;
+    top: 228px;
+
+    background: #FFFFFF;
+    border: 1px solid black;
+}
+
+.main .item3 {
+    position: absolute;
+    width: 669px;
+    height: 48px;
+    left: 300px;
+    top: 276px;
+
+    background: #FFFFFF;
+    border: 1px solid black;
+}
+
+.main .item4 {
+    position: absolute;
+    width: 669px;
+    height: 48px;
+    left: 300px;
+    top: 324px;
+
+    background: #FFFFFF;
+    border: 1px solid black;
+}
+
+.main .item5 {
+    position: absolute;
+    width: 669px;
+    height: 48px;
+    left: 300px;
+    top: 372px;
+
+    background: #FFFFFF;
+    border: 1px solid black;
+}
+
+.main .item6 {
+    position: absolute;
+    width: 669px;
+    height: 48px;
+    left: 300px;
+    top: 420px;
+
+    background: #FFFFFF;
+    border: 1px solid black;
+}
+
+.main .item7 {
+    position: absolute;
+    width: 669px;
+    height: 48px;
+    left: 300px;
+    top: 468px;
+
+    background: #FFFFFF;
+    border: 1px solid black;
+}
+
+.main .item8 {
+    position: absolute;
+    width: 669px;
+    height: 48px;
+    left: 300px;
+    top: 516px;
+
+    background: #FFFFFF;
+    border: 1px solid black;
+}
+
+.main .item span,
+.main .item2 span,
+.main .item3 span,
+.main .item4 span,
+.main .item5 span,
+.main .item6 span,
+.main .item7 span,
+.main .item8 span {
+    margin: 30px;
+}
+
+/*
+Pagination
+*/
+
+.main .pagination {
+    position: absolute;
+    height: 24px;
+    left: 325px;
+    top: 589px;
+
+    background: #21268F;
+    border-radius: 2px;
+}
+
+.main .pagination2 {
+    position: absolute;
+    height: 24px;
+    left: 365px;
+    top: 589px;
+
+    background: #21268F;
+    border-radius: 2px;
+}
+
+.main .pagination3 {
+    position: absolute;
+    height: 24px;
+    left: 405px;
+    top: 589px;
+
+    background: #21268F;
+    border-radius: 2px;
+}
+
+.main .pagination4 {
+    position: absolute;
+    height: 24px;
+    left: 445px;
+    top: 589px;
+
+    background: #21268F;
+    border-radius: 2px;
+}
+
+.main .pagination5 {
+    position: absolute;
+    height: 24px;
+    left: 485px;
+    top: 589px;
+
+    background: #21268F;
+    border-radius: 2px;
+}
+
+.main .pagination6 {
+    position: absolute;
+    height: 24px;
+    left: 525px;
+    top: 589px;
+
+    background: #21268F;
+    border-radius: 2px;
+}
+
+.main .pagination7 {
+    position: absolute;
+    height: 24px;
+    left: 565px;
+    top: 589px;
+
+    background: #21268F;
+    border-radius: 2px;
+}
+
+
+.main .pagination span{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+
+    text-align: center;
+    margin: 10px;
+
+    color: #F2F5F7;
+}
+
+.main .pagination2 span{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+
+    text-align: center;
+    margin: 10px;
+
+    color: #F2F5F7;
+}
+
+.main .pagination3 span{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+
+    text-align: center;
+    margin: 10px;
+
+    color: #F2F5F7;
+}
+
+.main .pagination4 span{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+
+    text-align: center;
+    margin: 10px;
+
+    color: #F2F5F7;
+}
+
+.main .pagination5 span{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+
+    text-align: center;
+    margin: 10px;
+
+    color: #F2F5F7;
+}
+
+.main .pagination6 span{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+
+    text-align: center;
+    margin: 10px;
+
+    color: #F2F5F7;
+}
+
+.main .pagination7 span{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+
+    text-align: center;
+    margin: 10px;
+
+    color: #F2F5F7;
+}
+
+/*
+Sidebar
+*/
+
+.container .sidebar {
+    position: absolute;
+    width: 243px;
+    height: 636px;
+    left: 0;
+    top: 0;
+
+    background: #ECECF9;
+    border-radius: 8px;
+}
+
+.profile {
+    position: absolute;
+    width: 243px;
+    height: 216px;
+    left: 0;
+    top: 0;
+
+    background: #D9D9F1;
+    border-radius: 8px;
+}
+
+.profile img {
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    left: 75px;
+    top: 8px;
+
+    border-radius: 50%;
+}
+
+.profile .header {
+    position: absolute;
+    width: 103px;
+    height: 27px;
+    left: 80px;
+    top: 108px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+
+
+    color: #2D2E46;
+}
+
+.profile .description {
+    position: absolute;
+    width: 130px;
+    height: 17px;
+    left: 60px;
+    top: 139px;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+
+    text-align: center;
+
+    color: #2D2E46;
+
+    opacity: 0.5;
+}
+
+.profile .numberCards {
+    position: absolute;
+    width: 130px;
+    height: 19px;
+    left: 24px;
+    top: 225px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #2D2E46;
+}
+
+.profile input {
+    position: absolute;
+    width: 196px;
+    left: 10px;
+    right: 0;
+    top: 130%;
+    bottom: 11.36%;
+
+    background: #21268F;
+    opacity: 0.5;
+    border-radius: 10px;
+}

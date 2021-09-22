@@ -6,6 +6,8 @@ import Main from './Main';
 import {store} from '../2-bll/store';
 import style from './App.module.css'
 
+// Initial commit
+
 function App() {
     return (
         <div className={style.App}>
