@@ -47,7 +47,7 @@ function Login() {
                 <SuperInputText className={style.loginInput} error={error}
                                 placeholder={'Email'} value={email} onChange={emailHandler}
                                 onClick={inputOnClickHandler}/>
-                <SuperInputText className={style.loginInput} error={error ? 'Field is required!' : ''}
+                <SuperInputText className={style.loginInput} error={error}
                                 placeholder={'Password'} value={password} onChange={passwordHandler}
                                 onClick={inputOnClickHandler}/>
                 <div className={style.rememberBlock}>
