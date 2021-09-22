@@ -9,9 +9,7 @@
     border-radius: 8px;
 }
 
-/*
-Main
-*/
+/* Main ======================================= */
 
 .main h1 {
     position: absolute;
@@ -42,9 +40,7 @@ Main
     border-radius: 2px;
 }
 
-/*
-List
-*/
+/* List ======================================= */
 
 .main .list {
     position: absolute;
@@ -72,97 +68,11 @@ List
     border: 1px solid black;
 }
 
-.main .item2 {
-    position: absolute;
-    width: 669px;
-    height: 48px;
-    left: 300px;
-    top: 228px;
-
-    background: #FFFFFF;
-    border: 1px solid black;
+.main .item span {
+    margin: 25px;
 }
 
-.main .item3 {
-    position: absolute;
-    width: 669px;
-    height: 48px;
-    left: 300px;
-    top: 276px;
-
-    background: #FFFFFF;
-    border: 1px solid black;
-}
-
-.main .item4 {
-    position: absolute;
-    width: 669px;
-    height: 48px;
-    left: 300px;
-    top: 324px;
-
-    background: #FFFFFF;
-    border: 1px solid black;
-}
-
-.main .item5 {
-    position: absolute;
-    width: 669px;
-    height: 48px;
-    left: 300px;
-    top: 372px;
-
-    background: #FFFFFF;
-    border: 1px solid black;
-}
-
-.main .item6 {
-    position: absolute;
-    width: 669px;
-    height: 48px;
-    left: 300px;
-    top: 420px;
-
-    background: #FFFFFF;
-    border: 1px solid black;
-}
-
-.main .item7 {
-    position: absolute;
-    width: 669px;
-    height: 48px;
-    left: 300px;
-    top: 468px;
-
-    background: #FFFFFF;
-    border: 1px solid black;
-}
-
-.main .item8 {
-    position: absolute;
-    width: 669px;
-    height: 48px;
-    left: 300px;
-    top: 516px;
-
-    background: #FFFFFF;
-    border: 1px solid black;
-}
-
-.main .item span,
-.main .item2 span,
-.main .item3 span,
-.main .item4 span,
-.main .item5 span,
-.main .item6 span,
-.main .item7 span,
-.main .item8 span {
-    margin: 30px;
-}
-
-/*
-Pagination
-*/
+/* Pagination ======================================= */
 
 .main .pagination {
     position: absolute;
@@ -319,9 +229,7 @@ Pagination
     color: #F2F5F7;
 }
 
-/*
-Sidebar
-*/
+/* Sidebar ======================================= */
 
 .container .sidebar {
     position: absolute;
@@ -334,9 +242,7 @@ Sidebar
     border-radius: 8px;
 }
 
-/*
-Profile
-*/
+/* Profile ======================================= */
 
 .profile {
     position: absolute;
@@ -394,9 +300,7 @@ Profile
     opacity: 0.5;
 }
 
-/*
-Range
-*/
+/* Range ======================================= */
 
 .sidebar .numberCards {
     position: absolute;

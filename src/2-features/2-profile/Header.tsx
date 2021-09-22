@@ -1,13 +1,13 @@
 import React from "react";
 
 type HeaderPropsType = {
-    header: string
+    title: string
 }
 
 export function Header(props: HeaderPropsType) {
     return (
         <div>
-            <h1>{props.header}</h1>
+            <h1>{props.title}</h1>
         </div>
     )
 }

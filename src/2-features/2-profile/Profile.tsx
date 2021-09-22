@@ -7,21 +7,37 @@ import {Range} from "./Range";
 import {Search} from "./Search";
 import {Header} from "./Header";
 
+export type EntityListType = Array<string>
+
 type stateForTestProfileType = {
-    header: string
+    pageTitle: string
+    list: {
+        headers: EntityListType
+        items: EntityListType
+    }
 }
 
 const stateForTestProfile: stateForTestProfileType = {
-    header: 'Packs list Petr’s'
+    pageTitle: 'Packs list Petr’s',
+    list: {
+        headers: ['Name', 'Cards', 'Last updated', 'Created by', 'Actions'],
+        items: ['Pack Name - Name Pack', '4', '18.03.2021', 'Ivan Ivanov', 'Learn'],
+    }
 }
 
+
+
 function Profile() {
+
+    const headers = stateForTestProfile.list.headers;
+    const items = stateForTestProfile.list.items;
+
     return (
         <div className={classes.container}>
             <div className={classes.main}>
-                <Header header={stateForTestProfile.header}/>
+                <Header title={stateForTestProfile.pageTitle}/>
                 <Search/>
-                <List/>
+                <List headers={headers} items={items}/>
                 <Pagination/>
             </div>
             <div className={classes.sidebar}>
