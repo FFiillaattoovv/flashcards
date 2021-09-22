@@ -1,9 +1,13 @@
 import React from "react";
 
-export function Header() {
+type HeaderPropsType = {
+    header: string
+}
+
+export function Header(props: HeaderPropsType) {
     return (
         <div>
-            <h1>Packs list Petr’s</h1>
+            <h1>{props.header}</h1>
         </div>
     )
 }

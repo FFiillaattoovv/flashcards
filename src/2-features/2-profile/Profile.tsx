@@ -7,11 +7,19 @@ import {Range} from "./Range";
 import {Search} from "./Search";
 import {Header} from "./Header";
 
+type stateForTestProfileType = {
+    header: string
+}
+
+const stateForTestProfile: stateForTestProfileType = {
+    header: 'Packs list Petr’s'
+}
+
 function Profile() {
     return (
         <div className={classes.container}>
             <div className={classes.main}>
-                <Header/>
+                <Header header={stateForTestProfile.header}/>
                 <Search/>
                 <List/>
                 <Pagination/>
