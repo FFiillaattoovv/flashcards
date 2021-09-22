@@ -37,7 +37,7 @@ export const changePasswordSuccessAC = (success: boolean) => {
     return {type: 'restore/CHANGE-PASSWORD-SUCCESS', success} as const
 }
 //thunks
-export const forgotPasswordTC = (email: string) => async (dispatch: Dispatch<UnionRestoreAT>) => {
+export const forgotPasswordTC = (email: string) => async (dispatch: Dispatch<UnionRestoreAT, any>) => {
     try {
         let requestObj: ForgotRequestType = {
             email: email,
@@ -53,7 +53,7 @@ export const forgotPasswordTC = (email: string) => async (dispatch: Dispatch<Uni
     }
 }
 
-export const setNewPasswordTC = (password: string, token: string) => async (dispatch: Dispatch<UnionRestoreAT>) => {
+export const setNewPasswordTC = (password: string, token: string) => async (dispatch: Dispatch<UnionRestoreAT, any>) => {
     try {
         let requestObj: SetNewPasswordRequestType = {
             password: password,
