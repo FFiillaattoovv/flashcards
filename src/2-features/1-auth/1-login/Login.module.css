@@ -33,6 +33,10 @@
     width: 330px;
     margin: 20px 0;
 }
+.loginCheckbox {
+    width: 20px;
+    display: inline-block;
+}
 .forgotLink {
     text-decoration: none;
     color: #2D2E46;
