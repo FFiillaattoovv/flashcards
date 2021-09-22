@@ -334,6 +334,10 @@ Sidebar
     border-radius: 8px;
 }
 
+/*
+Profile
+*/
+
 .profile {
     position: absolute;
     width: 243px;
@@ -390,7 +394,11 @@ Sidebar
     opacity: 0.5;
 }
 
-.profile .numberCards {
+/*
+Range
+*/
+
+.sidebar .numberCards {
     position: absolute;
     width: 130px;
     height: 19px;
@@ -405,13 +413,12 @@ Sidebar
     color: #2D2E46;
 }
 
-.profile input {
+.sidebar input {
     position: absolute;
     width: 196px;
     left: 10px;
     right: 0;
-    top: 130%;
-    bottom: 11.36%;
+    top: 250px;
 
     background: #21268F;
     opacity: 0.5;
