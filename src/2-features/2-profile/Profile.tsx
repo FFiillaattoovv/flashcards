@@ -22,6 +22,7 @@ type stateForTestProfileType = {
         items: EntityListType
     }
     profileData: ProfileDataType
+    countPage: number
 }
 
 const stateForTestProfile: stateForTestProfileType = {
@@ -35,7 +36,8 @@ const stateForTestProfile: stateForTestProfileType = {
         alt: 'User',
         header: 'Petr Ivanov',
         description: 'Front-end developer'
-    }
+    },
+    countPage: 7
 }
 
 
@@ -45,6 +47,7 @@ function Profile() {
     const headers = stateForTestProfile.list.headers;
     const items = stateForTestProfile.list.items;
     const profileData = stateForTestProfile.profileData;
+    const countPage = stateForTestProfile.countPage;
 
     return (
         <div className={classes.container}>
@@ -52,7 +55,7 @@ function Profile() {
                 <Header title={stateForTestProfile.pageTitle}/>
                 <Search/>
                 <List headers={headers} items={items}/>
-                <Pagination/>
+                <Pagination countPage={countPage}/>
             </div>
             <div className={classes.sidebar}>
                 <ProfileCard profileData={profileData}/>
