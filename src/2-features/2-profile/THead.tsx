@@ -6,10 +6,10 @@ type ListHeaderPropsType = {
     headers: EntityListType
 }
 
-export function ListHeader(props: ListHeaderPropsType) {
+export function THead(props: ListHeaderPropsType) {
     return (
-        <div className={classes.list}>
-            {props.headers.map(h => <span>{h}</span>)}
-        </div>
+        <tr className={classes.listItem}>
+            {props.headers.map(h => <th>{h}</th>)}
+        </tr>
     )
 }

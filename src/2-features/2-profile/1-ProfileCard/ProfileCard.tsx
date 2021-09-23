@@ -9,9 +9,9 @@ type ProfileCardPropsType = {
 export function ProfileCard(props: ProfileCardPropsType) {
     return (
         <div className={classes.profile}>
-            <img src={props.profileData.photo} alt={props.profileData.alt}/>
-            <span className={classes.header}>{props.profileData.header}</span>
-            <span className={classes.description}>{props.profileData.description}</span>
+            <div className={classes.image}><img src={props.profileData.photo} alt="User"/></div>
+            <div className={classes.name}>{props.profileData.header}</div>
+            <div className={classes.description}>{props.profileData.description}</div>
         </div>
     )
 }

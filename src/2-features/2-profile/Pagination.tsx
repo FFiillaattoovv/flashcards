@@ -14,8 +14,8 @@ export function Pagination(props: PaginationPropsType) {
     }
 
     return (
-        <div>
-            {pages.map(el => <div className={classes.pagination}><span>{el}</span></div>)}
-        </div>
+        <>
+            {pages.map(el => <span className={classes.pagination}>{el}</span>)}
+        </>
     )
 }
