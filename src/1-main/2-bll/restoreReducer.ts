@@ -48,8 +48,8 @@ export const forgotPasswordTC = (email: string) => async (dispatch: Dispatch<Uni
         dispatch(setReceiverEmailAC(email))
         dispatch(emailSendSuccessAC(response.data.success))
         dispatch(changePasswordSuccessAC(false))
-    } catch(e: any) {
-        alert(e.response.data.error)
+    } catch(e) {
+        console.log(e)
     }
 }
 
@@ -61,8 +61,8 @@ export const setNewPasswordTC = (password: string, token: string) => async (disp
         }
         await restoreAPI.setNewPassword(requestObj)
         dispatch(changePasswordSuccessAC(true))
-    } catch (e: any) {
-        alert(e.response.data.error)
+    } catch (e) {
+        console.log(e)
     }
 }
 

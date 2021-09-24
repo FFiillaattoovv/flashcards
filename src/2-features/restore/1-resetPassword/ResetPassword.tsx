@@ -4,6 +4,9 @@ import {forgotPasswordTC} from "../../../1-main/2-bll/restoreReducer";
 import {AppRootStateType} from "../../../1-main/2-bll/store";
 import {Redirect} from "react-router-dom";
 import {PATH} from "../../../1-main/1-ui/routes/Routes";
+import style from '../Restore.module.css';
+import SuperInputText from "../../1-auth/2-signUp/sign-up-common/SuperInputText/SuperInputText";
+import SuperButton from "../../1-auth/2-signUp/sign-up-common/SuperButton/SuperButton";
 
 function ResetPassword() {
 
@@ -25,14 +28,24 @@ function ResetPassword() {
     }
 
     return (
-        <div>
-            <h1>It-incubator</h1>
-            <h2>Forgot your password?</h2>
-            <input type="email" value={emailAddress} onChange={onChangeEmail}/>
-            <p>Enter your email address and we will send you further instructions</p>
-            <button onClick={submitEmail}>Send Instructions</button>
-            <p>Did you remember your password?</p>
-            <a href={'/login'}>Try logging in</a>
+        <div className={style.restoreContainer}>
+            <form className={style.restoreForm} onSubmit={submitEmail}>
+                <div>
+                    <h3>Forgot your password?</h3>
+                </div>
+                <div>
+                    <SuperInputText
+                        value={emailAddress}
+                        onChange={onChangeEmail}
+                        onEnter={submitEmail}
+                        type={'text'}
+                        placeholder={'Email'}
+                    />
+                </div>
+                <div className={style.buttonsContainer}>
+                    <SuperButton type={'submit'} color={'blue'}>Send instructions</SuperButton>
+                </div>
+            </form>
         </div>
     );
 }
