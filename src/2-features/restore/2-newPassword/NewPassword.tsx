@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useState, MouseEvent} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../../1-main/2-bll/store";
 import {setNewPasswordTC} from "../../../1-main/2-bll/restoreReducer";
@@ -20,7 +20,8 @@ function NewPassword() {
         setNewPassword(e.currentTarget.value)
     }
 
-    const submitNewPassword = () => {
+    const submitNewPassword = (e: MouseEvent<HTMLFormElement>) => {
+        e.preventDefault()
         dispatch(setNewPasswordTC(newPassword, token))
     }
 
@@ -38,7 +39,6 @@ function NewPassword() {
                     <SuperInputText
                         value={newPassword}
                         onChange={onChangeNewPassword}
-                        onEnter={submitNewPassword}
                         type={'password'}
                         placeholder={'New password'}
                     />
