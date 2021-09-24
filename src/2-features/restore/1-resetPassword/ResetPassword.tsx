@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useState, MouseEvent} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {forgotPasswordTC} from "../../../1-main/2-bll/restoreReducer";
 import {AppRootStateType} from "../../../1-main/2-bll/store";
@@ -19,7 +19,8 @@ function ResetPassword() {
         setEmailAddress(e.currentTarget.value)
     }
 
-    const submitEmail = () => {
+    const submitEmail = (e: MouseEvent<HTMLFormElement>) => {
+        e.preventDefault()
         dispatch(forgotPasswordTC(emailAddress))
     }
 
@@ -37,7 +38,6 @@ function ResetPassword() {
                     <SuperInputText
                         value={emailAddress}
                         onChange={onChangeEmail}
-                        onEnter={submitEmail}
                         type={'text'}
                         placeholder={'Email'}
                     />
