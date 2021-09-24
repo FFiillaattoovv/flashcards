@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {ForgotRequestType, restoreAPI, SetNewPasswordRequestType} from "./restoreAPI";
+import {ForgotRequestType, restoreAPI, SetNewPasswordRequestType} from "../3-dal/restoreAPI";
 
 type InitStateType = typeof initialState
 
