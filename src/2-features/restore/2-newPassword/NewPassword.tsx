@@ -4,6 +4,9 @@ import {AppRootStateType} from "../../../1-main/2-bll/store";
 import {setNewPasswordTC} from "../../../1-main/2-bll/restoreReducer";
 import {Redirect, useParams} from "react-router-dom";
 import {PATH} from "../../../1-main/1-ui/routes/Routes";
+import style from "../Restore.module.css";
+import SuperInputText from "../../1-auth/2-signUp/sign-up-common/SuperInputText/SuperInputText";
+import SuperButton from "../../1-auth/2-signUp/sign-up-common/SuperButton/SuperButton";
 
 function NewPassword() {
 
@@ -26,12 +29,25 @@ function NewPassword() {
     }
 
     return (
-        <div>
-            <h1>It-incubator</h1>
-            <h2>Create new password</h2>
-            <input type="password" value={newPassword} onChange={onChangeNewPassword}/>
-            <p>Create new password and we will send you further instructions to email</p>
-            <button onClick={submitNewPassword}>Create new password</button>
+        <div className={style.restoreContainer}>
+            <form className={style.restoreForm} onSubmit={submitNewPassword}>
+                <div>
+                    <h3>Create new password</h3>
+                </div>
+                <div>
+                    <SuperInputText
+                        value={newPassword}
+                        onChange={onChangeNewPassword}
+                        onEnter={submitNewPassword}
+                        type={'password'}
+                        placeholder={'New password'}
+                    />
+                </div>
+                <p>Create new password and log in with it afterwards</p>
+                <div className={style.buttonsContainer}>
+                    <SuperButton type={'submit'} color={'blue'}>Create new password</SuperButton>
+                </div>
+            </form>
         </div>
     );
 }

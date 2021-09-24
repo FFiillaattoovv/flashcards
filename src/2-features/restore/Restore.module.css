@@ -1,0 +1,44 @@
+.restoreContainer .restoreForm h3 {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 33px;
+    color: #2D2E46;
+}
+
+.restoreContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.restoreContainer .restoreForm {
+    background-color: #F9F9FE;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 413px;
+    height: 540px;
+}
+
+.restoreContainer .restoreForm .error {
+    display: inline-block;
+    color: #dd3355;
+    text-align: center;
+    width: 100%;
+}
+
+.restoreContainer .restoreForm .buttonsContainer {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+}
+
+.restoreForm p {
+    text-align: center;
+}
