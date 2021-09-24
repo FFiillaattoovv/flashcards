@@ -91,7 +91,7 @@ const stateForTestProfile: stateForTestProfileType = {
         ]
     },
     profileData: {
-        photo: 'https://us.123rf.com/450wm/axelbueckert/axelbueckert1507/axelbueckert150700010/42097570-happy-young-man-with-big-toothy-smile-isolated-on-white.jpg?ver=6',
+        photo: 'https://us.123rf.com/450wm/axelbueckert/axelbueckert1507/axelbueckert150700010/42097570-happy-young-man-with-big-toothy-smile-isolated-on-white.jpg',
         header: 'Petr Ivanov',
         description: 'Front-end developer'
     },
