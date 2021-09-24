@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {ForgotRequestType, restoreAPI, SetNewPasswordRequestType} from "../3-dal/restoreAPI";
+import {ForgotRequestType, restoreAPI, SetNewPasswordRequestType} from "./restoreAPI";
 
 type InitStateType = typeof initialState
 
@@ -24,7 +24,7 @@ export const restoreReducer = (state: InitStateType = initialState, action: Unio
     }
 }
 
-const recoveryMessage = `<div style="padding: 15px">Password recovery link: <a href="https://ffiillaattoovv.github.io/flashcards#/newPassword/$token$">click here</a></div>`
+const recoveryMessage = `<div style="padding: 15px">Password recovery link: <a href="http://localhost:3000/flashcards#/newPassword/$token$">click here</a></div>`
 const recoveryMessageAddressFrom = `NEKO ADMIN <ai73a@yandex.by>`
 //actions
 export const setReceiverEmailAC = (email: string) => {
@@ -37,7 +37,7 @@ export const changePasswordSuccessAC = (success: boolean) => {
     return {type: 'restore/CHANGE-PASSWORD-SUCCESS', success} as const
 }
 //thunks
-export const forgotPasswordTC = (email: string) => async (dispatch: Dispatch<UnionRestoreAT, null>) => {
+export const forgotPasswordTC = (email: string) => async (dispatch: Dispatch<UnionRestoreAT, any>) => {
     try {
         let requestObj: ForgotRequestType = {
             email: email,
@@ -48,12 +48,12 @@ export const forgotPasswordTC = (email: string) => async (dispatch: Dispatch<Uni
         dispatch(setReceiverEmailAC(email))
         dispatch(emailSendSuccessAC(response.data.success))
         dispatch(changePasswordSuccessAC(false))
-    } catch(e: any) {
-        alert(e.response.data.error)
+    } catch(e) {
+        console.log(e)
     }
 }
 
-export const setNewPasswordTC = (password: string, token: string) => async (dispatch: Dispatch<UnionRestoreAT, null>) => {
+export const setNewPasswordTC = (password: string, token: string) => async (dispatch: Dispatch<UnionRestoreAT, any>) => {
     try {
         let requestObj: SetNewPasswordRequestType = {
             password: password,
@@ -61,8 +61,8 @@ export const setNewPasswordTC = (password: string, token: string) => async (disp
         }
         await restoreAPI.setNewPassword(requestObj)
         dispatch(changePasswordSuccessAC(true))
-    } catch (e: any) {
-        alert(e.response.data.error)
+    } catch (e) {
+        console.log(e)
     }
 }
 

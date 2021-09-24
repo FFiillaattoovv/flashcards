@@ -6,15 +6,16 @@ type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
 
 type SuperButtonPropsType = DefaultButtonPropsType & {
     red?: boolean
+    color?: 'white' | 'blue' | 'red'
 }
 
 const SuperButton: React.FC<SuperButtonPropsType> = React.memo((
     {
-        red, className,
+        color, className,
         ...restProps// все остальные пропсы попадут в объект restProps, там же будет children
     }
 ) => {
-    const finalClassName = `${red ? s.red : s.default} ${className}`
+    const finalClassName = `${color ? s[color] : s.default} ${s.default}`
     console.log('SB')
     return (
         <button

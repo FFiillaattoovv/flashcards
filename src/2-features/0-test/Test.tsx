@@ -38,7 +38,7 @@ const Test = () => {
             </SuperButton>
 
             <SuperButton
-                red // пропсу с булевым значением не обязательно указывать true
+                // red // пропсу с булевым значением не обязательно указывать true
                 onClick={showAlert}
             >
                 delete {/*// название кнопки попадёт в children*/}
