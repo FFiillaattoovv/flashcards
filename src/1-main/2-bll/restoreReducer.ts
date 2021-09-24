@@ -24,7 +24,7 @@ export const restoreReducer = (state: InitStateType = initialState, action: Unio
     }
 }
 
-const recoveryMessage = `<div style="padding: 15px">Password recovery link: <a href="http://localhost:3000/flashcards#/newPassword/$token$">click here</a></div>`
+const recoveryMessage = `<div style="padding: 15px">Password recovery link: <a href="https://ffiillaattoovv.github.io/flashcards#/newPassword/$token$">click here</a></div>`
 const recoveryMessageAddressFrom = `NEKO ADMIN <ai73a@yandex.by>`
 //actions
 export const setReceiverEmailAC = (email: string) => {
@@ -37,7 +37,7 @@ export const changePasswordSuccessAC = (success: boolean) => {
     return {type: 'restore/CHANGE-PASSWORD-SUCCESS', success} as const
 }
 //thunks
-export const forgotPasswordTC = (email: string) => async (dispatch: Dispatch<UnionRestoreAT, any>) => {
+export const forgotPasswordTC = (email: string) => async (dispatch: Dispatch<UnionRestoreAT>) => {
     try {
         let requestObj: ForgotRequestType = {
             email: email,
@@ -53,7 +53,7 @@ export const forgotPasswordTC = (email: string) => async (dispatch: Dispatch<Uni
     }
 }
 
-export const setNewPasswordTC = (password: string, token: string) => async (dispatch: Dispatch<UnionRestoreAT, any>) => {
+export const setNewPasswordTC = (password: string, token: string) => async (dispatch: Dispatch<UnionRestoreAT>) => {
     try {
         let requestObj: SetNewPasswordRequestType = {
             password: password,
