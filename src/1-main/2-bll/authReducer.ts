@@ -1,4 +1,4 @@
-import {authAPI} from '../3-dal/api';
+import {authAPI} from '../3-dal/loginAPI';
 import {Dispatch} from 'redux';
 
 
