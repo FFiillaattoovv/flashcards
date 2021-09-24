@@ -5,9 +5,9 @@ import style from './Login.module.css'
 import {loginSuccess} from '../../../1-main/2-bll/authReducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../1-main/2-bll/store';
-import SuperInputText from '../2-signUp/sign-up-common/SuperInputText/SuperInputText';
-import SuperCheckbox from '../2-signUp/sign-up-common/SuperCheckbox/SuperCheckbox';
-import SuperButton from '../2-signUp/sign-up-common/SuperButton/SuperButton';
+import SuperCheckbox from "../2-signUp/sign-up-common/SuperCheckbox/SuperCheckbox";
+import SuperButton from "../2-signUp/sign-up-common/SuperButton/SuperButton";
+import SuperInputText from "../2-signUp/sign-up-common/SuperInputText/SuperInputText";
 
 
 function Login() {
@@ -40,9 +40,12 @@ function Login() {
                     <SuperCheckbox checked={rememberMe} onClick={rememberMeHandler}>Remember me</SuperCheckbox>
                     <NavLink to={PATH.RESET_PASSWORD} className={style.forgotLink} activeClassName={style.forgotLincActive}>Forgot password</NavLink>
                 </div>
-                <SuperButton className={style.loginButton} onClick={loginHandler}>Login</SuperButton>
-                <div className={style.loginText}>Don't have an account?</div>
-                <NavLink to={PATH.SIGN_UP} className={style.signUpLink} activeClassName={style.signUpLinkActive}>Sign Up</NavLink>
+                <div className={style.btnBlock}>
+                    <SuperButton color={'blue'} onClick={loginHandler}>Login</SuperButton>
+                    <div className={style.loginText}>Don't have an account?</div>
+                    <NavLink to={PATH.SIGN_UP} className={style.signUpLink} activeClassName={style.signUpLinkActive}>Sign Up</NavLink>
+
+                </div>
                 {error ? <div style={{color: 'red'}}>{error}</div> : ''}
             </div>
         </div>

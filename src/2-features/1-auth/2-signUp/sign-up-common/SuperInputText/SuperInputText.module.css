@@ -5,7 +5,7 @@
     margin-top: 35px;
 }
 
-input {
+.group input {
     background: transparent;
     padding: 5px 5px 5px 5px;
     display: block;
