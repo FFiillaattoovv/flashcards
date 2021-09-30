@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {signUpApi} from "../../2-features/1-auth/2-signUp/sign-up-api";
+import {signUpApi} from "../3-dal/sign-up-api";
 
 type initialStateType = {
     isLoggedIn: boolean
@@ -34,12 +34,9 @@ export const signUpTC = (email: string, password: string) => (dispatch: Dispatch
     signUpApi.createNewAccount(email, password)
         .then(res => {
             dispatch(setIsLoggedInAC(true))
-            // console.log(res.data)
         })
         .catch(rej=>{
             dispatch(setSignUpErrorAC(rej.response.data.error))
-            // console.log(req.response.data.error)
-            // alert(req.Error)
         })
 }
 
