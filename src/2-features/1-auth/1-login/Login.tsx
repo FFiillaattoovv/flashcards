@@ -5,14 +5,14 @@ import style from './Login.module.css'
 import {loginSuccess} from '../../../1-main/2-bll/authReducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../1-main/2-bll/store';
-import SuperCheckbox from "../2-signUp/sign-up-common/SuperCheckbox/SuperCheckbox";
-import SuperButton from "../2-signUp/sign-up-common/SuperButton/SuperButton";
-import SuperInputText from "../2-signUp/sign-up-common/SuperInputText/SuperInputText";
+import SuperCheckbox from '../2-signUp/sign-up-common/SuperCheckbox/SuperCheckbox';
+import SuperButton from '../2-signUp/sign-up-common/SuperButton/SuperButton';
+import SuperInputText from '../2-signUp/sign-up-common/SuperInputText/SuperInputText';
 
 
 function Login() {
     const dispatch = useDispatch()
-    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
+    const isAuth = useSelector<AppRootStateType, boolean>(state => state.auth.isAuth)
     const error = useSelector<AppRootStateType, string>(state => state.auth.error)
     const isLoading = useSelector<AppRootStateType, boolean>(state => state.auth.isLoading)
 
@@ -26,7 +26,7 @@ function Login() {
     const loginHandler = () => {
         dispatch(loginSuccess({email, password, rememberMe}))
     }
-    if(isLoggedIn){
+    if(isAuth){
         return <Redirect to={'/profile'} />
     }
     return (
