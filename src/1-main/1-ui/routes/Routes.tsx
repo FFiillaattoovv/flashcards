@@ -8,11 +8,13 @@ import Profile from '../../../2-features/2-profile/Profile';
 import ResetPassword from '../../../2-features/restore/1-resetPassword/ResetPassword';
 import NewPassword from '../../../2-features/restore/2-newPassword/NewPassword';
 import CheckEmail from "../../../2-features/restore/1-resetPassword/CheckEmail";
+import Packs from "../../../2-features/3-packs/Packs";
 
 export const PATH = {
     LOGIN: '/login',
     SIGN_UP: '/signup',
     PROFILE: '/profile',
+    PACKS: '/packs',
     RESET_PASSWORD: '/resetPassword',
     CHECK_EMAIL: '/checkEmail',
     NEW_PASSWORD: '/newPassword/:token',
@@ -27,6 +29,7 @@ function Routes() {
                 <Route path={PATH.LOGIN} render={() => <Login/>}/>
                 <Route path={PATH.SIGN_UP} render={() => <SignUp/>}/>
                 <Route path={PATH.PROFILE} render={() => <Profile/>}/>
+                <Route path={PATH.PACKS} render={() => <Packs/>}/>
                 <Route path={PATH.RESET_PASSWORD} render={() => <ResetPassword/>}/>
                 <Route path={PATH.CHECK_EMAIL} render={() => <CheckEmail/>}/>
                 <Route path={PATH.NEW_PASSWORD} render={() => <NewPassword/>}/>

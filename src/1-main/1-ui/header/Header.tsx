@@ -17,6 +17,7 @@ function Header() {
     return (
         <div className={style.header}>
             <CustomNavLink title={'profile'} to={PATH.PROFILE}/>
+            <CustomNavLink title={'packs'} to={PATH.PACKS}/>
             <CustomNavLink title={'sign-up'} to={PATH.SIGN_UP}/>
             <CustomNavLink title={'login'} to={PATH.LOGIN}/>
             {/*<CustomNavLink title={'new password'} to={PATH.NEW_PASSWORD}/>*/}
