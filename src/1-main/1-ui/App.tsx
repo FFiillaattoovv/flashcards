@@ -1,23 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.module.css';
-import {HashRouter} from 'react-router-dom';
-import {Provider} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import Main from './Main';
-import {store} from '../2-bll/store';
-import style from './App.module.css'
+import {getMe} from '../2-bll/authReducer';
 
 // Initial commit
 
-function App() {
-    return (
-        <div className={style.App}>
-            <HashRouter>
-                <Provider store={store}>
-                    <Main/>
-                </Provider>
-            </HashRouter>
-        </div>
-    );
-}
+const App = () => {
+    const dispatch = useDispatch()
 
+    useEffect(() => {
+        dispatch(getMe())
+    }, [dispatch])
+
+    return (
+        <div className="App">
+            <Main />
+        </div>
+    )
+}
 export default App;

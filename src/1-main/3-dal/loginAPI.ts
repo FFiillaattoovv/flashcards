@@ -8,7 +8,13 @@ const instance = axios.create({
 export const authAPI = {
     login(email: string, password: string, rememberMe: boolean) {
         return instance.post<LoginResponseType>('auth/login', {email, password, rememberMe})
-    }
+    },
+    logout() {
+        return instance.delete<InfoResponseType>('auth/me')
+    },
+    me() {
+        return instance.post<ResponseType>('auth/me', {})
+    },
 }
 
 // types
@@ -31,4 +37,26 @@ export type LoginResponseType = {
 type DeviceTokenType = {
     _id: string,
     device: string,
+}
+export type InfoResponseType = {
+    info: string,
+    error?: string
+}
+export type ResponseType = UserType & {
+    created: string,
+    deviceTokens?: DeviceTokenType [],
+    isAdmin: boolean,
+    rememberMe: boolean,
+    token: string,
+    tokenDeathTime: number,
+    updated: string,
+    verified: boolean,
+    error?: string,
+}
+export type UserType = {
+    _id: string,
+    email: string,
+    name: string,
+    avatar: string,
+    publicCardPacksCount: number,
 }
