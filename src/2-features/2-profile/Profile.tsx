@@ -7,6 +7,8 @@ import {Header} from "./Header";
 import {Range} from "./Range";
 import {Pagination} from "./Pagination";
 
+// Initial commit
+
 export type EntityListType = Array<string>
 export type ProfileDataType = {
     photo: string
