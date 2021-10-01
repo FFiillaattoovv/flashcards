@@ -11,14 +11,8 @@ export const packsAPI = {
         const id = userId ? `&user_id=${userId}` : ''
         return instance.get<GetPacksResponseType>(`cards/pack?pageCount=8${id}`)
     },
-    addPack(name: string, deckCover: string) {
-        return instance.post<LoginResponseType>('cards/pack', {name, deckCover})
-    },
-    logout() {
-        return instance.delete<InfoResponseType>('auth/me')
-    },
-    me() {
-        return instance.post<ResponseType>('auth/me', {})
+    addPack() {
+        return instance.post<GetPacksResponseType>('cards/pack', {cardsPack: {name: 'English pack'}})
     },
 }
 
@@ -30,48 +24,4 @@ export type GetPacksResponseType = {
     minCardsCount: number
     page: number
     pageCount: number
-}
-
-
-export type LoginResponseType = {
-    avatar: string,
-    created: string,
-    deviceTokens: DeviceTokenType [],
-    email: string,
-    isAdmin: boolean,
-    name: string,
-    publicCardPacksCount: number,
-    rememberMe: boolean,
-    token: string,
-    tokenDeathTime: number,
-    updated: string,
-    verified: boolean,
-    __v: number,
-    _id: string,
-}
-type DeviceTokenType = {
-    _id: string,
-    device: string,
-}
-export type InfoResponseType = {
-    info: string,
-    error?: string
-}
-export type ResponseType = UserType & {
-    created: string,
-    deviceTokens?: DeviceTokenType [],
-    isAdmin: boolean,
-    rememberMe: boolean,
-    token: string,
-    tokenDeathTime: number,
-    updated: string,
-    verified: boolean,
-    error?: string,
-}
-export type UserType = {
-    _id: string,
-    email: string,
-    name: string,
-    avatar: string,
-    publicCardPacksCount: number,
 }

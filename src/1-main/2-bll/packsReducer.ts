@@ -37,8 +37,16 @@ export const setPacksAC = (data: GetPacksResponseType) => ({type: 'SET-PACKS', d
 export const getPacksTC = (userId?: string) => (dispatch: Dispatch<ActionsType, null>) => {
     packsAPI.getPacks(userId)
         .then((res) => {
-            console.log(res.data)
             dispatch(setPacksAC(res.data))
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}
+export const addPackTC = () => (dispatch: Dispatch<ActionsType, null>) => {
+    packsAPI.addPack()
+        .then((res) => {
+            dispatch(getPacksTC())
         })
         .catch((error) => {
             console.log(error)
