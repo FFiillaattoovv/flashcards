@@ -45,7 +45,16 @@ export const getPacksTC = (userId?: string) => (dispatch: Dispatch<ActionsType, 
 }
 export const addPackTC = () => (dispatch: Dispatch<ActionsType, null>) => {
     packsAPI.addPack()
-        .then((res) => {
+        .then(() => {
+            dispatch(getPacksTC())
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}
+export const deletePackTC = (packId: string) => (dispatch: Dispatch<ActionsType, null>) => {
+    packsAPI.deletePack(packId)
+        .then(() => {
             dispatch(getPacksTC())
         })
         .catch((error) => {

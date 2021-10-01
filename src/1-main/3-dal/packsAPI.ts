@@ -14,6 +14,9 @@ export const packsAPI = {
     addPack() {
         return instance.post<GetPacksResponseType>('cards/pack', {cardsPack: {name: 'English pack'}})
     },
+    deletePack(packId: string) {
+        return instance.delete<GetPacksResponseType>(`cards/pack?id=${packId}`)
+    },
 }
 
 // types

@@ -1,7 +1,7 @@
 /* Page ======================================= */
 
 .page {
-    width: 1008px;
+    width: 1108px;
     height: 632px;
     margin: 24px auto;
     display: flex;
@@ -99,7 +99,7 @@
 /* Header */
 
 .header {
-    width: 669px;
+    width: 818px;
     padding: 14px 48px 14px 48px;
 
     background-color: #FEFEFF;
@@ -117,7 +117,7 @@
 /* Main */
 
 .main {
-    width: 669px;
+    width: 818px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
