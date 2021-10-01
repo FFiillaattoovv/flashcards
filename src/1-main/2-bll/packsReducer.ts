@@ -16,7 +16,7 @@ export const packsReducer = (state: initialStateType = initialState, action: Act
         case "SET-PACKS": {
             return {
                 ...state,
-                cardPacks: [...state.cardPacks, ...action.data.cardPacks],
+                cardPacks: [...action.data.cardPacks],
                 cardPacksTotalCount: action.data.cardPacksTotalCount,
                 maxCardsCount: action.data.maxCardsCount,
                 minCardsCount: action.data.minCardsCount,
@@ -34,8 +34,8 @@ export const setPacksAC = (data: GetPacksResponseType) => ({type: 'SET-PACKS', d
 
 
 // thunks
-export const getPacksTC = () => (dispatch: Dispatch<ActionsType, null>) => {
-    packsAPI.getPacks()
+export const getPacksTC = (userId?: string) => (dispatch: Dispatch<ActionsType, null>) => {
+    packsAPI.getPacks(userId)
         .then((res) => {
             console.log(res.data)
             dispatch(setPacksAC(res.data))

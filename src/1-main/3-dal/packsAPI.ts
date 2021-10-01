@@ -7,11 +7,12 @@ const instance = axios.create({
 })
 
 export const packsAPI = {
-    getPacks() {
-        return instance.get<GetPacksResponseType>('cards/pack')
+    getPacks(userId?: string) {
+        const id = userId ? `&user_id=${userId}` : ''
+        return instance.get<GetPacksResponseType>(`cards/pack?pageCount=8${id}`)
     },
-    login(email: string, password: string, rememberMe: boolean) {
-        return instance.get<LoginResponseType>('auth/login')
+    addPack(name: string, deckCover: string) {
+        return instance.post<LoginResponseType>('cards/pack', {name, deckCover})
     },
     logout() {
         return instance.delete<InfoResponseType>('auth/me')

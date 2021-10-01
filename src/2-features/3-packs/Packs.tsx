@@ -17,7 +17,18 @@ const Packs = () => {
     const maxCardsCount = useSelector<AppRootStateType, number | null>(state => state.packs.maxCardsCount)
     const minCardsCount = useSelector<AppRootStateType, number | null>(state => state.packs.minCardsCount)
     const pageCount = useSelector<AppRootStateType, number | null>(state => state.packs.pageCount)
+    const userId = useSelector<AppRootStateType, string>(state => state.auth.userId)
     const dispatch = useDispatch()
+
+    const addNewPackHandler = () => {
+
+    }
+    const getMyPacksHandler = () => {
+        dispatch(getPacksTC(userId))
+    }
+    const getAllPacksHandler = () => {
+        dispatch(getPacksTC())
+    }
 
     useEffect(() => {
         dispatch(getPacksTC())
@@ -27,8 +38,10 @@ const Packs = () => {
         <div className={classes.page}>
             <aside className={classes.sidebar}>
                 <div className={classes.profile}>
-                    <button>My</button>
-                    <button>All</button>
+                    <div style={{padding: "80px"}}>
+                        <button onClick={getMyPacksHandler}>My</button>
+                        <button  onClick={getAllPacksHandler}>All</button>
+                    </div>
                 </div>
                 <Range/>
             </aside>
@@ -36,6 +49,7 @@ const Packs = () => {
                 <header className={classes.header}>
                     <Header title={'Packs list'}/>
                     <Search/>
+                    <button style={{marginLeft: "50px"}} onClick={addNewPackHandler}>Add new pack</button>
                 </header>
                 <main className={classes.main}>
                     <Table headers={['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']} items={cardPacks}/>
