@@ -61,6 +61,15 @@ export const deletePackTC = (packId: string) => (dispatch: Dispatch<ActionsType,
             console.log(error)
         })
 }
+export const updatePackTC = (packId: string) => (dispatch: Dispatch<ActionsType, null>) => {
+    packsAPI.updatePack(packId)
+        .then(() => {
+            dispatch(getPacksTC())
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}
 
 // types
 export type CardPacksType = {
