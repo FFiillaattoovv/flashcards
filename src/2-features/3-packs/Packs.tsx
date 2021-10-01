@@ -51,7 +51,7 @@ const Packs = () => {
                     <Table headers={['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']} items={cardPacks}/>
                 </main>
                 <footer className={classes.footer}>
-                    <Pagination pageCount={page}/>
+                    <Pagination page={page}/>
                 </footer>
             </div>
         </div>
