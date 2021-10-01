@@ -28,7 +28,7 @@ const Packs = () => {
 
     useEffect(() => {
         dispatch(getPacksTC())
-    }, [])
+    }, [dispatch])
 
     return (
         <div className={classes.page}>
