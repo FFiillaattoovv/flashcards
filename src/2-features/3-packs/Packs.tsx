@@ -1,39 +1,47 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import classes from "../2-profile/Profile.module.css";
-import {ProfileCard} from "../2-profile/1-ProfileCard/ProfileCard";
 import {Range} from "../2-profile/Range";
 import {Header} from "../2-profile/Header";
 import {Search} from "../2-profile/Search";
 import {Table} from "../2-profile/Table";
 import {Pagination} from "../2-profile/Pagination";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../1-main/2-bll/store";
-import {EntityListType, ItemsListType, ProfileDataType} from "../2-profile/Profile";
+import {CardPacksType, getPacksTC} from "../../1-main/2-bll/packsReducer";
 
 
 const Packs = () => {
-    const title = useSelector<AppRootStateType, string>(state => state.packs.pageTitle);
-    const headers = useSelector<AppRootStateType, EntityListType>(state => state.packs.list.headers);
-    const items = useSelector<AppRootStateType, Array<ItemsListType>>(state => state.packs.list.items);
-    const profileData = useSelector<AppRootStateType, ProfileDataType>(state => state.packs.profileData);
-    const countPage = useSelector<AppRootStateType, number>(state => state.packs.countPage);
+    const page = useSelector<AppRootStateType, number | null>(state => state.packs.page)
+    const cardPacks = useSelector<AppRootStateType, Array<CardPacksType>>(state => state.packs.cardPacks)
+    const cardPacksTotalCount = useSelector<AppRootStateType, number | null>(state => state.packs.cardPacksTotalCount)
+    const maxCardsCount = useSelector<AppRootStateType, number | null>(state => state.packs.maxCardsCount)
+    const minCardsCount = useSelector<AppRootStateType, number | null>(state => state.packs.minCardsCount)
+    const pageCount = useSelector<AppRootStateType, number | null>(state => state.packs.pageCount)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getPacksTC())
+    }, [])
 
     return (
         <div className={classes.page}>
             <aside className={classes.sidebar}>
-                <ProfileCard profileData={profileData}/>
+                <div className={classes.profile}>
+                    <button>My</button>
+                    <button>All</button>
+                </div>
                 <Range/>
             </aside>
             <div className={classes.content}>
                 <header className={classes.header}>
-                    <Header title={title}/>
+                    <Header title={'Packs list'}/>
                     <Search/>
                 </header>
                 <main className={classes.main}>
-                    <Table headers={headers} items={items}/>
+                    <Table headers={['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']} items={cardPacks}/>
                 </main>
                 <footer className={classes.footer}>
-                    <Pagination countPage={countPage}/>
+                    <Pagination pageCount={pageCount}/>
                 </footer>
             </div>
         </div>

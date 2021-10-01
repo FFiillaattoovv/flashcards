@@ -2,20 +2,14 @@ import classes from "./Profile.module.css";
 import React from "react";
 
 type PaginationPropsType = {
-    countPage: number
+    pageCount: number | null
 }
 
 export function Pagination(props: PaginationPropsType) {
 
-    const pages = []
-
-    for (let i = 1; props.countPage >= i; i++) {
-        pages.push(i);
-    }
-
     return (
         <>
-            {pages.map(el => <span className={classes.pagination}>{el}</span>)}
+            {<span className={classes.pagination}>{props.pageCount}</span>}
         </>
     )
 }

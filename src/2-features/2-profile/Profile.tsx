@@ -12,30 +12,30 @@ import {AppRootStateType} from "../../1-main/2-bll/store";
 
 function Profile() {
 
-    const title = useSelector<AppRootStateType, string>(state => state.packs.pageTitle);
-    const headers = useSelector<AppRootStateType, EntityListType>(state => state.packs.list.headers);
-    const items = useSelector<AppRootStateType, Array<ItemsListType>>(state => state.packs.list.items);
-    const profileData = useSelector<AppRootStateType, ProfileDataType>(state => state.packs.profileData);
-    const countPage = useSelector<AppRootStateType, number>(state => state.packs.countPage);
+    // const title = useSelector<AppRootStateType, string>(state => state.packs.pageTitle);
+    // const headers = useSelector<AppRootStateType, EntityListType>(state => state.packs.list.headers);
+    // const items = useSelector<AppRootStateType, Array<ItemsListType>>(state => state.packs.list.items);
+    // const profileData = useSelector<AppRootStateType, ProfileDataType>(state => state.packs.profileData);
+    // const countPage = useSelector<AppRootStateType, number>(state => state.packs.countPage);
 
     return (
         <div className={classes.page}>
-            <aside className={classes.sidebar}>
-                <ProfileCard profileData={profileData}/>
-                <Range/>
-            </aside>
-            <div className={classes.content}>
-                <header className={classes.header}>
-                    <Header title={title}/>
-                    <Search/>
-                </header>
-                <main className={classes.main}>
-                    <Table headers={headers} items={items}/>
-                </main>
-                <footer className={classes.footer}>
-                    <Pagination countPage={countPage}/>
-                </footer>
-            </div>
+            {/*<aside className={classes.sidebar}>*/}
+            {/*    <ProfileCard profileData={profileData}/>*/}
+            {/*    <Range/>*/}
+            {/*</aside>*/}
+            {/*<div className={classes.content}>*/}
+            {/*    <header className={classes.header}>*/}
+            {/*        <Header title={title}/>*/}
+            {/*        <Search/>*/}
+            {/*    </header>*/}
+            {/*    <main className={classes.main}>*/}
+            {/*        <Table headers={headers} items={items}/>*/}
+            {/*    </main>*/}
+            {/*    <footer className={classes.footer}>*/}
+            {/*        <Pagination countPage={countPage}/>*/}
+            {/*    </footer>*/}
+            {/*</div>*/}
         </div>
     );
 }
