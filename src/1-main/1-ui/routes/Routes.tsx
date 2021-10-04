@@ -16,6 +16,7 @@ export const PATH = {
     RESET_PASSWORD: '/resetPassword',
     CHECK_EMAIL: '/checkEmail',
     NEW_PASSWORD: '/newPassword/:token',
+    CARDS: '/cards',
     TEST: '/test'
 }
 

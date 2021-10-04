@@ -10,15 +10,19 @@ function Main() {
 
     return (
         <div>
-            {
-                isAuth
-                    ?
-                    <div>
-                        <Header/>
-                        <Routes/>
-                    </div>
-                    : <Login />
-            }
+            <Header/>
+            <Routes/>
+            {/*{*/}
+            {/*    isAuth*/}
+            {/*        ?*/}
+            {/*        <div>*/}
+            {/*            <Header/>*/}
+            {/*        </div>*/}
+            {/*        :*/}
+            {/*        <div>*/}
+            {/*            <Login/>*/}
+            {/*        </div>*/}
+            {/*}*/}
         </div>
     );
 }

@@ -21,6 +21,7 @@ function Header() {
             <CustomNavLink title={'login'} to={PATH.LOGIN}/>
             {/*<CustomNavLink title={'new password'} to={PATH.NEW_PASSWORD}/>*/}
             <CustomNavLink title={'reset password'} to={PATH.RESET_PASSWORD}/>
+            <CustomNavLink title={'cards'} to={PATH.CARDS}/>
             <CustomNavLink title={'test'} to={PATH.TEST}/>
             <NavLink to={'/login'}><SuperButton color={"blue"} onClick={logoutHandler}>logout</SuperButton></NavLink>
         </div>

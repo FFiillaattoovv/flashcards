@@ -4,12 +4,14 @@ import {profileReducer} from './profileReducer';
 import {restoreReducer} from './restoreReducer';
 import {signUpReducer} from "./signUpReducer";
 import thunkMiddleware from 'redux-thunk'
+import {cardsReducer} from "./cardsReducer";
 
 const rootReducer = combineReducers({
     auth: authReducer,
     profile: profileReducer,
     restore: restoreReducer,
-    signUp: signUpReducer
+    signUp: signUpReducer,
+    cards: cardsReducer,
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));

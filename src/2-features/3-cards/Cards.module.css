@@ -1,0 +1,14 @@
+.tableContainer {
+    display: flex;
+    width: 80vw;
+    min-width: 500px;
+    margin: 0 auto;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+.table {
+    width: 100%;
+}
