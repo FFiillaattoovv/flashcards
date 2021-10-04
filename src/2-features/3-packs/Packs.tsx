@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import classes from "../2-profile/Profile.module.css";
 import {Range} from "../2-profile/Range";
 import {Header} from "../2-profile/Header";
@@ -25,10 +25,6 @@ const Packs = () => {
     const getAllPacksHandler = () => {
         dispatch(getPacksTC())
     }
-
-    useEffect(() => {
-        dispatch(getPacksTC())
-    }, [dispatch])
 
     return (
         <div className={classes.page}>
