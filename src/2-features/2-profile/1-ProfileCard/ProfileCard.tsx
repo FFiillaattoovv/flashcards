@@ -1,17 +1,51 @@
 import classes from "../Profile.module.css";
-import React from "react";
+import React, {useState} from "react";
+import {useDispatch} from "react-redux";
+import {updateUserDataTC} from "../../../1-main/2-bll/profileReducer";
 
 type ProfileCardPropsType = {
-    name: string | undefined
-    avatar: string | undefined
+    name: string
+    avatar: string
 }
 
 export function ProfileCard(props: ProfileCardPropsType) {
-    const avatar = props.avatar ? props.avatar : 'https://thumbs.dreamstime.com/b/happy-smiling-geek-hipster-beard-man-cool-avatar-geek-man-avatar-104871313.jpg'
+    const [editModeAvatar, setEditModeAvatar] = useState(false)
+    const [editModeName, setEditModeName] = useState(false)
+    let [avatar, setAvatar] = useState(props.avatar)
+    let [name, setName] = useState(props.name)
+    const dispatch = useDispatch()
+
     return (
         <div className={classes.profile}>
-            <div className={classes.image}><img src={avatar} alt="User"/></div>
-            <div className={classes.name}>{props.name}</div>
+            {
+                editModeAvatar
+                    ? <input type="text"
+                             onBlur={() => {
+                                 setEditModeAvatar(false)
+                                 if (name && avatar) {
+                                     dispatch(updateUserDataTC(name, avatar))
+                                 }
+                             }}
+                             value={avatar}
+                             onChange={(e) => setAvatar(e.currentTarget.value)}
+                             autoFocus={true}/>
+                    : <div className={classes.image}
+                           onDoubleClick={() => setEditModeAvatar(true)}><img src={avatar} alt="User"/></div>
+            }
+            {
+                editModeName
+                    ? <input type="text"
+                             onBlur={() => {
+                                 setEditModeName(false)
+                                 if (name && avatar) {
+                                     dispatch(updateUserDataTC(name, avatar))
+                                 }
+                             }}
+                             value={name}
+                             onChange={(e) => setName(e.currentTarget.value)}
+                             autoFocus={true}/>
+                    : <div className={classes.name} onDoubleClick={() => setEditModeName(true)}>{name}</div>
+            }
             <div className={classes.description}>{'Front-end developer'}</div>
         </div>
     )
