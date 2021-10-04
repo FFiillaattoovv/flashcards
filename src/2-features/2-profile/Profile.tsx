@@ -9,19 +9,23 @@ import {Pagination} from "./Pagination";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../1-main/2-bll/store";
 import {CardPacksType, getPacksTC} from "../../1-main/2-bll/packsReducer";
+import Preloader from "../../1-main/1-ui/common/Preloader";
 
 
 function Profile() {
-    const name = useSelector<AppRootStateType, string | undefined>(state => state.auth.name)
-    const avatar = useSelector<AppRootStateType, string | undefined>(state => state.auth.avatar)
+    const name = useSelector<AppRootStateType, string>(state => state.profile.name)
+    const avatar = useSelector<AppRootStateType, string>(state => state.profile.avatar)
     const cardPacks = useSelector<AppRootStateType, Array<CardPacksType>>(state => state.packs.cardPacks)
     const page = useSelector<AppRootStateType, number | null>(state => state.packs.page)
     const dispatch = useDispatch()
 
-
     useEffect(() => {
         dispatch(getPacksTC())
     }, [dispatch])
+
+    if (!(name || avatar)) {
+        return <Preloader/>
+    }
 
     return (
         <div className={classes.page}>
