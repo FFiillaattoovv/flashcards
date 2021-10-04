@@ -1,5 +1,6 @@
 import {authAPI} from '../3-dal/loginAPI';
 import {Dispatch} from 'redux';
+import {setUserDataAC, SetUserDataActionType} from "./profileReducer";
 
 
 const initialState = {
@@ -8,9 +9,7 @@ const initialState = {
     isAuth: false,
     isLoggedIn: false,
     error: '',
-    isLoading: false,
-    name: '' as string | undefined,
-    avatar: '' as string | undefined,
+    isLoading: false
 }
 
 export const authReducer = (state = initialState, action: ActionsType): typeof initialState => {
@@ -35,9 +34,7 @@ export const authReducer = (state = initialState, action: ActionsType): typeof i
                 ...state,
                 userId: action.userId,
                 email: action.email,
-                isAuth: action.isAuth,
-                name: action.name,
-                avatar: action.avatar,
+                isAuth: action.isAuth
             }
         }
         default:
@@ -49,23 +46,23 @@ export const authReducer = (state = initialState, action: ActionsType): typeof i
 export const isLoggedInChange = (isLoggedIn: boolean) => ({type: 'IS-LOGGED-IN-CHANGE', isLoggedIn}) as const
 export const setError = (error: string) => ({type: 'SET-ERROR', error}) as const
 export const setIsLoading = (isLoading: boolean) => ({type: 'SET-IS-LOADING', isLoading}) as const
-export const setAuthUserData = (userId: string, email: string, isAuth: boolean, name?: string, avatar?: string) => ({
+export const setAuthUserData = (userId: string, email: string, isAuth: boolean) => ({
     type: 'SET-AUTH-USER-DATA',
     userId: userId,
     email: email,
-    isAuth: isAuth,
-    name: name,
-    avatar: avatar,
+    isAuth: isAuth
 }) as const
 
 //Thunks
 export const loginSuccess = (loginData: LoginDataType) => (dispatch: Dispatch<ActionsType, null>) => {
     dispatch(setIsLoading(true))
     authAPI.login(loginData.email, loginData.password, loginData.rememberMe)
-        .then(() => {
+        .then((res) => {
             dispatch(isLoggedInChange(true))
             dispatch(setIsLoading(false))
-            dispatch(getMe())
+            // dispatch(getMe())
+            dispatch(setAuthUserData(res.data._id, res.data.email, true))
+            dispatch(setUserDataAC(res.data.name, res.data.avatar))
             dispatch(setError(''))
         })
         .catch(() => {
@@ -74,10 +71,10 @@ export const loginSuccess = (loginData: LoginDataType) => (dispatch: Dispatch<Ac
         })
 }
 export const logoutSuccess = () => (dispatch: Dispatch<ActionsType, null>) => {
+    dispatch(setAuthUserData('', '', false))
+    dispatch(setUserDataAC('', ''))
     authAPI.logout()
-        .then(() => {
-            dispatch(setAuthUserData('', '', false))
-        })
+        .then(() => {})
         .catch((error) => {
             dispatch(setError(error.response.data.error))
         })
@@ -85,8 +82,9 @@ export const logoutSuccess = () => (dispatch: Dispatch<ActionsType, null>) => {
 export const getMe = () => {
     return async (dispatch: any) => {
         const res = await authAPI.me()
-        let {_id, email, name, avatar} = res.data
-        dispatch(setAuthUserData(_id, email, true, name, avatar))
+        let {_id, email} = res.data
+        dispatch(setAuthUserData(_id, email, true))
+        dispatch(setUserDataAC(res.data.name, res.data.avatar))
     }
 }
 // types
@@ -94,6 +92,7 @@ type ActionsType = ReturnType<typeof isLoggedInChange>
     | ReturnType<typeof setError>
     | ReturnType<typeof setIsLoading>
     | ReturnType<typeof setAuthUserData>
+    | SetUserDataActionType
 
 type LoginDataType = {
     email: string,
