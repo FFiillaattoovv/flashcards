@@ -30,7 +30,7 @@ export function ProfileCard(props: ProfileCardPropsType) {
                              onChange={(e) => setAvatar(e.currentTarget.value)}
                              autoFocus={true}/>
                     : <div className={classes.image}
-                           onDoubleClick={() => setEditModeAvatar(true)}><img src={avatar} alt="User"/></div>
+                           onDoubleClick={() => setEditModeAvatar(true)}>&#9998;<img src={avatar} alt="User"/></div>
             }
             {
                 editModeName
@@ -44,7 +44,7 @@ export function ProfileCard(props: ProfileCardPropsType) {
                              value={name}
                              onChange={(e) => setName(e.currentTarget.value)}
                              autoFocus={true}/>
-                    : <div className={classes.name} onDoubleClick={() => setEditModeName(true)}>{name}</div>
+                    : <div className={classes.name} onDoubleClick={() => setEditModeName(true)}>&#9998;{name}</div>
             }
             <div className={classes.description}>{'Front-end developer'}</div>
         </div>
