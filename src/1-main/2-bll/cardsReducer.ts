@@ -1,5 +1,6 @@
 import {Dispatch} from "redux";
-import {cardsAPI} from "../3-dal/cardsAPI";
+import {AddCardDataType, cardsAPI, RequestAddCardType, RequestUpdateCardType} from "../3-dal/cardsAPI";
+import {AppRootStateType} from "./store";
 
 type InitStateType = typeof initState
 export type CardType = {
@@ -16,6 +17,7 @@ export type CardType = {
     __v: number
     _id: string
 }
+
 type FetchCardsType = ReturnType<typeof fetchCards>
 type SetInitType = ReturnType<typeof setInit>
 type ActionsType = FetchCardsType | SetInitType
@@ -59,3 +61,29 @@ export const fetchCardsTC = (id: string) => async (dispatch: Dispatch<any, null>
     }
 }
 
+export const addCardTC = (data: RequestAddCardType) => async (dispatch: Dispatch<any, null>) => {
+    try {
+        await cardsAPI.addCard(data)
+        dispatch(fetchCardsTC(data.card.cardsPack_id))
+    } catch(e) {
+        console.log(e)
+    }
+}
+
+export const deleteCardTC = (id: string, cardsPack_id: string) => async (dispatch: Dispatch<any, null>, getState: () => AppRootStateType) => {
+    try {
+        await cardsAPI.deleteCard(id)
+        dispatch(fetchCardsTC(cardsPack_id))
+    } catch(e) {
+        console.log(e)
+    }
+}
+
+export const editCardTC = (data: RequestUpdateCardType, cardsPack_id: string) => async (dispatch: Dispatch<any, null>) => {
+    try {
+        await cardsAPI.updateCard(data)
+        dispatch(fetchCardsTC(cardsPack_id))
+    } catch(e) {
+        console.log(e)
+    }
+}

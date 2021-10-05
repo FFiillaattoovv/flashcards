@@ -1,8 +1,10 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {CardType, fetchCardsTC} from "../../1-main/2-bll/cardsReducer";
+import {addCardTC, CardType, deleteCardTC, editCardTC, fetchCardsTC} from "../../1-main/2-bll/cardsReducer";
 import {AppRootStateType} from "../../1-main/2-bll/store";
 import styles from './Cards.module.css'
+import {useParams} from "react-router-dom";
+import {AddCardDataType, UpdateCardDataType} from "../../1-main/3-dal/cardsAPI";
 
 export function Cards() {
     const dispatch = useDispatch()
@@ -10,9 +12,10 @@ export function Cards() {
     const init = useSelector<AppRootStateType, boolean>(state => state.cards.init)
     const loggedUserId = useSelector<AppRootStateType, string>(state => state.auth.userId)
     const packUserId = useSelector<AppRootStateType, string>(state => state.cards.packUserId)
+    const {cardsPack_id} = useParams<{ cardsPack_id: string }>()
 
     useEffect(() => {
-        dispatch(fetchCardsTC('60ca179a1ae11c00046ead3e'))
+        dispatch(fetchCardsTC(cardsPack_id))
     }, [])
 
     const formatDate = (date: string) => {
@@ -26,16 +29,44 @@ export function Cards() {
         return <div>Loading</div>
     }
 
-    let cardsElements = cards.map(card => <tr key={card._id}>
-        <td>{card.question}</td>
-        <td>{card.answer}</td>
-        <td>{formatDate(card.updated)}</td>
-        <td>{card.grade}</td>
-        {loggedUserId === packUserId ? <td>
-            <button>Delete</button>
-            <button>Edit</button>
-        </td> : <td></td>}
-    </tr>)
+    const addCard = () => {
+        let card: AddCardDataType = {
+            cardsPack_id: cardsPack_id,
+            question: 'what the hell',
+            answer: 'dude, have no clue'
+        }
+        dispatch(addCardTC({card}))
+    }
+
+    const deleteCard = (cardId: string, packId: string) => {
+        return () => {
+            dispatch(deleteCardTC(cardId, packId))
+        }
+    }
+
+    const editCard = (cardId: string, packId: string) => {
+        let card: UpdateCardDataType = {
+            _id: cardId,
+            question: 'Updated question full of confusion',
+            answer: 'Updated Answer but simple as hell'
+        }
+        return () => {
+            dispatch(editCardTC({card}, packId))
+        }
+    }
+
+    let cardsElements = cards.map(card => {
+        return <tr key={card._id}>
+            <td>{card.question}</td>
+            <td>{card.answer}</td>
+            <td>{formatDate(card.updated)}</td>
+            <td>{card.grade}</td>
+            {loggedUserId === packUserId ? <td>
+                <button onClick={deleteCard(card._id, card.cardsPack_id)}>Delete</button>
+                <button onClick={editCard(card._id, card.cardsPack_id)}>Edit</button>
+            </td> : <td></td>}
+        </tr>
+    })
 
     return (
         <div className={styles.tableContainer}>
@@ -46,7 +77,7 @@ export function Cards() {
                     <th>Answer</th>
                     <th>Updated</th>
                     <th>Grade</th>
-                    <th>Actions</th>
+                    <th>{loggedUserId === packUserId && <button onClick={addCard}>Add</button>}Actions</th>
                 </tr>
                 </thead>
                 <tbody>

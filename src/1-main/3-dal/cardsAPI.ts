@@ -23,6 +23,9 @@ export type AddCardDataType = {
     answerVideo?: string
     type?: string
 }
+export type RequestAddCardType = {
+    card: AddCardDataType
+}
 export type UpdateCardDataType = {
     _id: string
     question?: string
@@ -37,6 +40,9 @@ export type UpdateCardDataType = {
     type?: string
     comments?: string
 }
+export type RequestUpdateCardType = {
+    card: UpdateCardDataType
+}
 const instance = axios.create({
     baseURL: 'https://neko-back.herokuapp.com/2.0/',
     withCredentials: true
@@ -46,13 +52,13 @@ export const cardsAPI = {
     getCards(id: string) {
         return instance.get<CardsResponseType>(`cards/card?cardsPack_id=${id}`)
     },
-    addCard(card: AddCardDataType) {
-        return instance.post(`cards/card`, card)
+    addCard(data: RequestAddCardType) {
+        return instance.post(`cards/card`, data)
     },
     deleteCard(id: string) {
         return instance.delete(`cards/card/?id=${id}`)
     },
-    updateCard(card: UpdateCardDataType) {
-        return instance.put(`cards/card`, card)
+    updateCard(data: RequestUpdateCardType) {
+        return instance.put(`cards/card`, data)
     }
 }
