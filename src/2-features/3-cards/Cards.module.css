@@ -1,5 +1,6 @@
 .tableContainer {
     display: flex;
+    flex-direction: column;
     width: 80vw;
     min-width: 500px;
     margin: 0 auto;
@@ -12,3 +13,33 @@ table, th, td {
 .table {
     width: 100%;
 }
+
+.rangeContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.rangeContainer span {
+    margin: 0 5px 0 5px
+}
+
+.searchInput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchInput button {
+    width: 100px;
+    margin-left: 10px;
+}
+
+.searchInput .letterInput {
+    width: 400px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+

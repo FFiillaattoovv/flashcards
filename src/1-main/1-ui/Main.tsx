@@ -8,6 +8,11 @@ import UnauthorizedRoutes from "./routes/UnauthorizedRoutes";
 
 function Main() {
     const isAuth = useSelector<AppRootStateType, boolean>(state => state.auth.isAuth)
+    const isInitialized = useSelector<AppRootStateType, boolean>(state => state.auth.isInitialized)
+
+    if (!isInitialized) {
+        return <div>Loading</div>
+    }
 
     return (
         <div>

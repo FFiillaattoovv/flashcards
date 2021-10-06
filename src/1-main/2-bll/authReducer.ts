@@ -9,7 +9,8 @@ const initialState = {
     isAuth: false,
     isLoggedIn: false,
     error: '',
-    isLoading: false
+    isLoading: false,
+    isInitialized: false
 }
 
 export const authReducer = (state = initialState, action: ActionsType): typeof initialState => {
@@ -37,6 +38,9 @@ export const authReducer = (state = initialState, action: ActionsType): typeof i
                 isAuth: action.isAuth
             }
         }
+        case "SET-IS-INITIALIZED": {
+            return {...state, isInitialized: action.isInit}
+        }
         default:
             return state
     }
@@ -52,6 +56,7 @@ export const setAuthUserData = (userId: string, email: string, isAuth: boolean) 
     email: email,
     isAuth: isAuth
 }) as const
+export const setIsInitialized = (isInit: boolean) => ({type: 'SET-IS-INITIALIZED', isInit}) as const
 
 //Thunks
 export const loginSuccess = (loginData: LoginDataType) => (dispatch: Dispatch<ActionsType, null>) => {
@@ -74,18 +79,25 @@ export const logoutSuccess = () => (dispatch: Dispatch<ActionsType, null>) => {
     dispatch(setAuthUserData('', '', false))
     dispatch(setUserDataAC('', ''))
     authAPI.logout()
-        .then(() => {})
+        .then(() => {
+        })
         .catch((error) => {
             dispatch(setError(error.response.data.error))
         })
 }
-export const getMe = () => {
-    return async (dispatch: any) => {
+export const getMe = () => async (dispatch: any) => {
+    try {
         const res = await authAPI.me()
         let {_id, email} = res.data
         dispatch(setAuthUserData(_id, email, true))
         dispatch(setUserDataAC(res.data.name, res.data.avatar))
+    } catch(e) {
+        console.log(e)
+    } finally {
+        dispatch(setIsInitialized(true))
     }
+
+
 }
 // types
 type ActionsType = ReturnType<typeof isLoggedInChange>
@@ -93,6 +105,7 @@ type ActionsType = ReturnType<typeof isLoggedInChange>
     | ReturnType<typeof setIsLoading>
     | ReturnType<typeof setAuthUserData>
     | SetUserDataActionType
+    | ReturnType<typeof setIsInitialized>
 
 type LoginDataType = {
     email: string,
