@@ -11,8 +11,8 @@ export const packsAPI = {
         const id = userId ? `&user_id=${userId}` : ''
         return instance.get<GetPacksResponseType>(`cards/pack?pageCount=8${id}`)
     },
-    addPack() {
-        return instance.post<GetPacksResponseType>('cards/pack', {cardsPack: {name: 'English pack'}})
+    addPack(name: string) {
+        return instance.post<GetPacksResponseType>('cards/pack', {cardsPack: {name: name}})
     },
     deletePack(packId: string) {
         return instance.delete<GetPacksResponseType>(`cards/pack?id=${packId}`)

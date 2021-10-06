@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 import {AddCardDataType} from "../../../1-main/3-dal/cardsAPI";
 import s from "../Modal.module.css";
 
-export const ModalCard = (props: ModalCardPropsType) => {
+export const ModalWithTwoInput = (props: ModalWithTwoInputPropsType) => {
     const [questionValue, setQuestionValue] = useState('')
     const [answerValue, setAnswerValue] = useState('')
     const dispatch = useDispatch()
@@ -40,7 +40,7 @@ export const ModalCard = (props: ModalCardPropsType) => {
 }
 
 // types
-type ModalCardPropsType = {
+type ModalWithTwoInputPropsType = {
     cardsPack_id: string
     action: Function
     setModalActive: Dispatch<SetStateAction<boolean>>

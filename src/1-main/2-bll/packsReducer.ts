@@ -43,8 +43,8 @@ export const getPacksTC = (userId?: string) => (dispatch: Dispatch<ActionsType, 
             console.log(error)
         })
 }
-export const addPackTC = () => (dispatch: Dispatch<ActionsType, null>) => {
-    packsAPI.addPack()
+export const addPackTC = (name: string) => (dispatch: Dispatch<ActionsType, null>) => {
+    packsAPI.addPack(name)
         .then(() => {
             dispatch(getPacksTC())
         })

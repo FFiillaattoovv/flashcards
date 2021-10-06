@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "../2-profile/Profile.module.css";
 import {Range} from "../2-profile/Range";
 import {Header} from "../2-profile/Header";
@@ -8,16 +8,19 @@ import {Pagination} from "../2-profile/Pagination";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../1-main/2-bll/store";
 import {addPackTC, CardPacksType, getPacksTC} from "../../1-main/2-bll/packsReducer";
+import Modal from "../5-modal/Modal";
+import {ModalWithOneInput} from "../5-modal/children/ModalWithOneInput";
 
 
 const Packs = () => {
     const page = useSelector<AppRootStateType, number | null>(state => state.packs.page)
     const cardPacks = useSelector<AppRootStateType, Array<CardPacksType>>(state => state.packs.cardPacks)
     const userId = useSelector<AppRootStateType, string>(state => state.auth.userId)
+    const [modalActive, setModalActive] = useState(false)
     const dispatch = useDispatch()
 
     const addNewPackHandler = () => {
-        dispatch(addPackTC())
+        setModalActive(true)
     }
     const getMyPacksHandler = () => {
         dispatch(getPacksTC(userId))
@@ -54,6 +57,9 @@ const Packs = () => {
                     <Pagination page={page}/>
                 </footer>
             </div>
+            <Modal active={modalActive} setActive={setModalActive}>
+                <ModalWithOneInput action={addPackTC} setModalActive={setModalActive}/>
+            </Modal>
         </div>
     );
 };

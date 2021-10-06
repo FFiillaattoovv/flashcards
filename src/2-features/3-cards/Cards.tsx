@@ -6,7 +6,7 @@ import styles from './Cards.module.css'
 import {useParams} from "react-router-dom";
 import {UpdateCardDataType} from "../../1-main/3-dal/cardsAPI";
 import Modal from "../5-modal/Modal";
-import {ModalCard} from "../5-modal/children/ModalCard";
+import {ModalWithTwoInput} from "../5-modal/children/ModalWithTwoInput";
 
 
 export function Cards() {
@@ -89,7 +89,7 @@ export function Cards() {
                 </tbody>
             </table>
             <Modal active={modalActive} setActive={setModalActive}>
-                <ModalCard cardsPack_id={cardsPack_id} action={addCardTC} setModalActive={setModalActive}/>
+                <ModalWithTwoInput cardsPack_id={cardsPack_id} action={addCardTC} setModalActive={setModalActive}/>
             </Modal>
         </div>
     )
