@@ -4,7 +4,10 @@ import {addCardTC, CardType, deleteCardTC, editCardTC, fetchCardsTC} from "../..
 import {AppRootStateType} from "../../1-main/2-bll/store";
 import styles from './Cards.module.css'
 import {useParams} from "react-router-dom";
-import {AddCardDataType, UpdateCardDataType} from "../../1-main/3-dal/cardsAPI";
+import {UpdateCardDataType} from "../../1-main/3-dal/cardsAPI";
+import Modal from "../5-modal/Modal";
+import {ModalCard} from "../5-modal/children/ModalCard";
+
 
 export function Cards() {
     const dispatch = useDispatch()
@@ -14,9 +17,12 @@ export function Cards() {
     const packUserId = useSelector<AppRootStateType, string>(state => state.cards.packUserId)
     const {cardsPack_id} = useParams<{ cardsPack_id: string }>()
 
+    const [modalActive, setModalActive] = useState(false)
+
+
     useEffect(() => {
         dispatch(fetchCardsTC(cardsPack_id))
-    }, [])
+    }, [dispatch, cardsPack_id])
 
     const formatDate = (date: string) => {
         let day = date.slice(8, 10)
@@ -30,13 +36,9 @@ export function Cards() {
     }
 
     const addCard = () => {
-        let card: AddCardDataType = {
-            cardsPack_id: cardsPack_id,
-            question: 'what the hell',
-            answer: 'dude, have no clue'
-        }
-        dispatch(addCardTC({card}))
+        setModalActive(true)
     }
+
 
     const deleteCard = (cardId: string, packId: string) => {
         return () => {
@@ -77,14 +79,19 @@ export function Cards() {
                     <th>Answer</th>
                     <th>Updated</th>
                     <th>Grade</th>
-                    <th>{loggedUserId === packUserId && <button onClick={addCard}>Add</button>}Actions</th>
+                    <th>{loggedUserId === packUserId &&
+                    <button className={styles.openBtn} onClick={addCard}>Add</button>}Actions
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
                 {cardsElements}
                 </tbody>
             </table>
+            <Modal active={modalActive} setActive={setModalActive}>
+                <ModalCard cardsPack_id={cardsPack_id} action={addCardTC} setModalActive={setModalActive}/>
+            </Modal>
         </div>
-
     )
 }
+
