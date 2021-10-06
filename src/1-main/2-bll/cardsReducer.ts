@@ -44,6 +44,9 @@ const initState = {
         pageCount: ''
     } as QueryParamsObjType,
     pages: 0 as number,
+    pageCount: 0 as number,
+    currentPage: 1 as number,
+    cardsTotalCount: 0 as number,
     packUserId: null as string | null,
     cardsPack_id: '',
     init: false
@@ -56,7 +59,10 @@ export const cardsReducer = (state: InitStateType = initState, action: ActionsTy
                 ...state,
                 cards: action.cards,
                 packUserId: action.packUserId,
-                cardsPack_id: action.cardsPack_id
+                cardsPack_id: action.cardsPack_id,
+                currentPage: action.currentPage,
+                pageCount: action.pageCount,
+                cardsTotalCount: action.cardsTotalCount,
             }
         }
         case 'cards/SET-INIT': {
@@ -128,8 +134,8 @@ export const cardsReducer = (state: InitStateType = initState, action: ActionsTy
     }
 }
 
-export const fetchCards = (cards: Array<CardType>, packUserId: string, cardsPack_id: string) => {
-    return {type: 'cards/FETCH-CARDS', cards, packUserId, cardsPack_id} as const
+export const fetchCards = (cards: Array<CardType>, packUserId: string, cardsPack_id: string, currentPage: number, pageCount: number, cardsTotalCount: number) => {
+    return {type: 'cards/FETCH-CARDS', cards, packUserId, cardsPack_id, currentPage, pageCount, cardsTotalCount} as const
 }
 export const setInit = () => {
     return {type: 'cards/SET-INIT'} as const
@@ -159,23 +165,33 @@ export const setAnswerSearch = (answer: string) => {
 //thunks
 export const fetchCardsTC = (cardsPack_id: string) => async (dispatch: Dispatch<ActionsType, any>, getState: () => AppRootStateType) => {
     try {
+        //getting obj with optional query params from state which is empty by default
         const optionalsObj = getState().cards.queryParamsObject
+
+        //if we enter another card pack we reset all optional query params
         if (cardsPack_id !== getState().cards.cardsPack_id) {
             for (const property in optionalsObj) {
                 optionalsObj[property] = ''
             }
         }
+
+        //creating optional querystring with optional params
         let optionalString = ''
         for (const property in optionalsObj) {
             if (optionalsObj[property] !== '')
                 optionalString = optionalString.concat(`&${property}=${optionalsObj[property]}`)
         }
+
+        //fetch request with all id and optional query params if they are present
         const response = await cardsAPI.getCards(cardsPack_id, optionalString)
-        dispatch(fetchCards(response.data.cards, response.data.packUserId, cardsPack_id))
-        dispatch(setPages(response.data.cardsTotalCount % response.data.pageCount === 0
-            ? response.data.cardsTotalCount / response.data.pageCount
-            : Math.floor(response.data.cardsTotalCount / response.data.pageCount + 1)))
-        console.log(response.data.cards)
+
+        //setting necessary data into state
+        dispatch(fetchCards(response.data.cards, response.data.packUserId, cardsPack_id, response.data.page, response.data.pageCount, response.data.cardsTotalCount))
+
+        //setting pages count depending on total amount of cards and pageCount value
+        dispatch(setPages(response.data.cardsTotalCount % response.data.pageCount !== 0 || response.data.cardsTotalCount === 0
+            ? Math.floor(response.data.cardsTotalCount / response.data.pageCount + 1)
+            : response.data.cardsTotalCount / response.data.pageCount))
     } catch (e) {
         console.log(e)
     } finally {

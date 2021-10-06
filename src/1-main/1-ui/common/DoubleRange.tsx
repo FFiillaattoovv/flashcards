@@ -5,12 +5,15 @@ import 'antd/dist/antd.css';
 type DoubleRangePropsType = {
     onChangeRange?: (value: [number, number]) => void
     value?: [number, number]
+    min?: number
+    max?: number
+    step?: number
     // min, max, step, disable, ...
 }
 
 export const DoubleRange: React.FC<DoubleRangePropsType> = (
     {
-        onChangeRange, value,
+        onChangeRange, value,min, max, step
         // min, max, step, disable, ...
     }
 ) => {
@@ -19,6 +22,6 @@ export const DoubleRange: React.FC<DoubleRangePropsType> = (
     }
     // сделать самому, можно подключать библиотеки
     return (
-        <Slider style={{width: "500px"}} range={true} value={value} onChange={onChangeCallback} max={5} step={1}/>
+        <Slider style={{width: "500px"}} range={true} value={value} onChange={onChangeCallback} min={min} max={max} step={step}/>
     )
 };

@@ -5,7 +5,7 @@ import {Table} from "./Table";
 import {Search} from "./Search";
 import {Header} from "./Header";
 import {Range} from "./Range";
-import {Pagination} from "./Pagination";
+import {PaginationTest} from "./Pagination";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../1-main/2-bll/store";
 import {CardPacksType, getPacksTC} from "../../1-main/2-bll/packsReducer";
@@ -42,7 +42,7 @@ function Profile() {
                     <Table headers={['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']} items={cardPacks}/>
                 </main>
                 <footer className={classes.footer}>
-                    <Pagination page={page}/>
+                    <PaginationTest page={page}/>
                 </footer>
             </div>
         </div>

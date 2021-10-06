@@ -25,21 +25,10 @@ table, th, td {
     margin: 0 5px 0 5px
 }
 
-.searchInput {
+.pagesFooter {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-}
-
-.searchInput button {
-    width: 100px;
-    margin-left: 10px;
-}
-
-.searchInput .letterInput {
-    width: 400px;
-    margin-right: 10px;
-    margin-left: 10px;
 }
 

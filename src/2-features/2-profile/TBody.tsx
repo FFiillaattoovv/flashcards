@@ -35,12 +35,10 @@ export function TBody(props: ListItemPropsType) {
                         <td>{lastUpdated}</td>
                         <td>{userName}</td>
                         <td>
-                            <button className={classes.btn} onClick={deletePackHandler}>{'Delete'}</button>
-                            <button style={{marginLeft: "10px"}} className={classes.btn}
-                                    onClick={editPackHandler}>{'Edit'}</button>
-                            {item.user_id === loggedUserId &&
+                            {loggedUserId === item.user_id && <button className={classes.btn} onClick={deletePackHandler}>{'Delete'}</button>}
+                            {loggedUserId === item.user_id && <button style={{marginLeft: "10px"}} className={classes.btn} onClick={editPackHandler}>{'Edit'}</button>}
                             <NavLink to={`/cards/${item._id}`}><button style={{marginLeft: "10px"}}
-                                    className={classes.btn}>{'Cards'}</button></NavLink>}
+                                    className={classes.btn}>{'Cards'}</button></NavLink>
                         </td>
                     </tr>
                 })

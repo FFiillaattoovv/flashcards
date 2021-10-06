@@ -1,0 +1,17 @@
+.searchInput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchInput button {
+    width: 60px;
+    margin-left: 10px;
+}
+
+.searchInput .letterInput {
+    width: 400px;
+    margin-right: 10px;
+    margin-left: 10px;
+}

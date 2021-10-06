@@ -13,6 +13,10 @@ import {useParams} from "react-router-dom";
 import {AddCardDataType, UpdateCardDataType} from "../../1-main/3-dal/cardsAPI";
 import {DoubleRange} from "../../1-main/1-ui/common/DoubleRange";
 import RadioOptions from "../../1-main/1-ui/common/RadioOptions";
+import {SearchBar} from "../../1-main/1-ui/common/SearchBar";
+import {Pagination} from "../../1-main/1-ui/common/Pagination";
+import {formatDate} from "../../1-main/1-ui/utils/formatDate";
+import {RangeFilter} from "../../1-main/1-ui/common/RangeFilter";
 
 export function Cards() {
     const dispatch = useDispatch()
@@ -21,6 +25,9 @@ export function Cards() {
     const loggedUserId = useSelector<AppRootStateType, string>(state => state.auth.userId)
     const packUserId = useSelector<AppRootStateType, string | null>(state => state.cards.packUserId)
     const pages = useSelector<AppRootStateType, number>(state => state.cards.pages)
+    const currentPage = useSelector<AppRootStateType, number>(state => state.cards.currentPage)
+    const pageCount = useSelector<AppRootStateType, number>(state => state.cards.pageCount)
+    const cardsTotalCount = useSelector<AppRootStateType, number>(state => state.cards.cardsTotalCount)
     const [minValue, setMinValue] = useState(0)
     const [maxValue, setMaxValue] = useState(5)
     const searchOptions = ['by question', 'by answer']
@@ -35,15 +42,6 @@ export function Cards() {
     if (!init) {
         return <div>Loading</div>
     }
-
-    //util format date
-    const formatDate = (date: string) => {
-        let day = date.slice(8, 10)
-        let month = date.slice(5, 7)
-        let year = date.slice(0, 4)
-        return `${day}.${month}.${year}`
-    }
-    //end util format date
 
     //CRUD on cards
     const addCard = () => {
@@ -91,44 +89,33 @@ export function Cards() {
 
     //sort by grade
     const sortHighGrade = () => {
-        const sortString = '1grade'
-        dispatch(setSortCards(sortString))
+        dispatch(setSortCards('1grade'))
         dispatch(fetchCardsTC(cardsPack_id))
     }
     const sortLowGrade = () => {
-        const sortString = '0grade'
-        dispatch(setSortCards(sortString))
+        dispatch(setSortCards('0grade'))
         dispatch(fetchCardsTC(cardsPack_id))
     }
     //end sort by grade
 
-    //how many items on page or pageCount
-    const setPageCount3 = () => {
-        const sortString = '3'
-        dispatch(setPageCount(sortString))
-        dispatch(fetchCardsTC(cardsPack_id))
+    //pagination
+    //pageCount -> how many items on page
+    const setPageCountCallback = (pageCount: string) => {
+        return () => {
+            dispatch(setPageCount(pageCount))
+            dispatch(fetchCardsTC(cardsPack_id))
+        }
     }
-
-    const setPageCount5 = () => {
-        const sortString = '5'
-        dispatch(setPageCount(sortString))
-        dispatch(fetchCardsTC(cardsPack_id))
-    }
-    //end how many items on page or pageCount
-
-    //pages button elements
-    const pagesTotalCount = []
-    for (let i=1;i<=pages;i++) {
-        pagesTotalCount.push(i)
-    }
+    //end pageCount -> how many items on page
+    //pages
     const setPage = (page: number) => {
         return () => {
             dispatch(setCurrentPage(page.toString()))
             dispatch(fetchCardsTC(cardsPack_id))
         }
     }
-    const pagesElements = pagesTotalCount.map(p => <button key={Math.random() + p} onClick={setPage(p)}>{p}</button>)
-    //end pages button elements
+    //end pages
+    //end pagination
 
     //range
     const onChangeRangeDouble = ([num1, num2]: number[]) => {
@@ -157,20 +144,31 @@ export function Cards() {
             dispatch(fetchCardsTC(cardsPack_id))
         }
     }
+    const onClickReset = () => {
+        setSearchValue('')
+        dispatch(setAnswerSearch(''))
+        dispatch(setQuestionSearch(''))
+        dispatch(fetchCardsTC(cardsPack_id))
+    }
     //end search
     return (
         <div className={styles.tableContainer}>
-            <div className={styles.searchInput}>
-                <RadioOptions name={'radio'} options={searchOptions} value={searchOption} onChangeOption={setSearchOption}/>
-                <input className={styles.letterInput} value={searchValue} onChange={onChangeSearchValue}/>
-                <button onClick={onClickSearch}>Search</button>
-            </div>
-            <div className={styles.rangeContainer}>
-                <span>{minValue} </span>
-                <DoubleRange value={[minValue, maxValue]} onChangeRange={onChangeRangeDouble}/>
-                <span> {maxValue}</span>
-                <button onClick={onClickGradeRangeFilter}>Filter</button>
-            </div>
+            <SearchBar searchValue={searchValue}
+                       onChangeSearchValue={onChangeSearchValue}
+                       onClickSearch={onClickSearch}
+                       onClickReset={onClickReset}
+                       searchOptions={searchOptions}
+                       searchOption={searchOption}
+                       setSearchOption={setSearchOption}
+            />
+            <RangeFilter minValue={minValue}
+                         maxValue={maxValue}
+                         onChangeRangeDouble={onChangeRangeDouble}
+                         onClickGradeRangeFilter={onClickGradeRangeFilter}
+                         min={0}
+                         max={5}
+                         step={1}
+            />
             <table className={styles.table}>
                 <thead>
                 <tr>
@@ -186,20 +184,15 @@ export function Cards() {
                 <tbody>
                 {cardsElements}
                 </tbody>
-                <tfoot className={styles.tfoot}>
-                <tr>
-                    <th>
-                        PageCount<button onClick={setPageCount3}>3</button><button onClick={setPageCount5}>5</button>
-                    </th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>
-                        Pages{pagesElements}
-                    </th>
-                </tr>
-                </tfoot>
             </table>
+            <Pagination pageCountArray={['1', '5', '10', '20']}
+                        setPageCountCallback={setPageCountCallback}
+                        pages={pages}
+                        setPage={setPage}
+                        totalItems={cardsTotalCount}
+                        currentPage={currentPage}
+                        pageSize={pageCount}
+            />
         </div>
     )
 }

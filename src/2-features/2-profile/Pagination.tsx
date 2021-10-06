@@ -5,7 +5,7 @@ type PaginationPropsType = {
     page: number | null
 }
 
-export function Pagination(props: PaginationPropsType) {
+export function PaginationTest(props: PaginationPropsType) {
 
     return (
         <>
