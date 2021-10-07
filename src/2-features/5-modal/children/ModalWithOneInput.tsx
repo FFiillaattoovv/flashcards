@@ -20,8 +20,10 @@ export const ModalWithOneInput = (props: ModalWithOneInputPropsType) => {
                 <input type="text" value={packValue}
                        onChange={(e) => setPackValue(e.currentTarget.value)}/>
             </fieldset>
-            <button className={s.cancelBtn} onClick={() => props.setModalActive(false)}>Cancel</button>
-            <button className={s.saveBtn} onClick={sendAddPack}>Save</button>
+            <div className={s.btnContainer}>
+                <button className={s.cancelBtn} onClick={() => props.setModalActive(false)}>Cancel</button>
+                <button className={s.saveBtn} onClick={sendAddPack}>Save</button>
+            </div>
         </div>
     )
 }

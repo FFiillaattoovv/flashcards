@@ -1,17 +1,26 @@
-import React, {useEffect, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addCardTC, CardType, deleteCardTC, editCardTC, fetchCardsTC} from "../../1-main/2-bll/cardsReducer";
+import {
+    addCardTC,
+    CardType,
+    deleteCardTC,
+    editCardTC,
+    fetchCardsTC,
+    setAnswerSearch,
+    setCurrentPage,
+    setMinMaxGrade,
+    setPageCount,
+    setQuestionSearch,
+    setSortCards
+} from "../../1-main/2-bll/cardsReducer";
 import {AppRootStateType} from "../../1-main/2-bll/store";
 import styles from './Cards.module.css'
 import {useParams} from "react-router-dom";
-import {AddCardDataType, UpdateCardDataType} from "../../1-main/3-dal/cardsAPI";
-import {DoubleRange} from "../../1-main/1-ui/common/DoubleRange";
-import RadioOptions from "../../1-main/1-ui/common/RadioOptions";
+import {UpdateCardDataType} from "../../1-main/3-dal/cardsAPI";
 import {SearchBar} from "../../1-main/1-ui/common/SearchBar";
 import {Pagination} from "../../1-main/1-ui/common/Pagination";
 import {formatDate} from "../../1-main/1-ui/utils/formatDate";
 import {RangeFilter} from "../../1-main/1-ui/common/RangeFilter";
-import {UpdateCardDataType} from "../../1-main/3-dal/cardsAPI";
 import Modal from "../5-modal/Modal";
 import {ModalWithTwoInput} from "../5-modal/children/ModalWithTwoInput";
 
@@ -174,10 +183,6 @@ export function Cards() {
                         <button onClick={sortLowGrade}>low</button>
                     </th>
                     <th>{loggedUserId === packUserId && <button onClick={addCard}>Add</button>}Actions</th>
-                    <th>Grade</th>
-                    <th>{loggedUserId === packUserId &&
-                    <button className={styles.openBtn} onClick={addCard}>Add</button>}Actions
-                    </th>
                 </tr>
                 </thead>
                 <tbody>

@@ -1,7 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
-import React, {useEffect, useState} from 'react';
 import classes from "../2-profile/Profile.module.css";
-import {Range} from "../2-profile/Range";
 import {Header} from "../2-profile/Header";
 import {Table} from "../2-profile/Table";
 import {useDispatch, useSelector} from "react-redux";
@@ -9,17 +7,19 @@ import {AppRootStateType} from "../../1-main/2-bll/store";
 import {
     addPackTC,
     CardPacksType,
-    getPacksTC, setMinMaxCardsInPack, setPacksCurrentPage,
-    setPacksNameSearch, setPacksPageCount,
-    setPacksUserId, setSortPacksByDate
+    getPacksTC,
+    setMinMaxCardsInPack,
+    setPacksCurrentPage,
+    setPacksNameSearch,
+    setPacksPageCount,
+    setPacksUserId,
+    setSortPacksByDate
 } from "../../1-main/2-bll/packsReducer";
 import {SearchBar} from "../../1-main/1-ui/common/SearchBar";
 import {Redirect} from "react-router-dom";
 import {PATH} from "../../1-main/1-ui/routes/Routes";
 import {Pagination} from "../../1-main/1-ui/common/Pagination";
 import {RangeFilter} from "../../1-main/1-ui/common/RangeFilter";
-import {fetchCardsTC, setMinMaxGrade} from "../../1-main/2-bll/cardsReducer";
-import {addPackTC, CardPacksType, getPacksTC} from "../../1-main/2-bll/packsReducer";
 import Modal from "../5-modal/Modal";
 import {ModalWithOneInput} from "../5-modal/children/ModalWithOneInput";
 

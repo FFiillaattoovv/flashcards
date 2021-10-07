@@ -80,3 +80,8 @@
 
     color: #ECECF9;
 }
+
+.childrenContainer .btnContainer {
+    display: flex;
+    flex-direction: row;
+}

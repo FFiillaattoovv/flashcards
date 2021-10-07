@@ -33,8 +33,11 @@ export const ModalWithTwoInput = (props: ModalWithTwoInputPropsType) => {
                 <input type="text" value={answerValue}
                        onChange={(e) => setAnswerValue(e.currentTarget.value)}/>
             </fieldset>
-            <button className={s.cancelBtn} onClick={() => props.setModalActive(false)}>Cancel</button>
-            <button className={s.saveBtn} onClick={sendAddCard}>Save</button>
+            <div className={s.btnContainer}>
+                <button className={s.cancelBtn} onClick={() => props.setModalActive(false)}>Cancel</button>
+                <button className={s.saveBtn} onClick={sendAddCard}>Save</button>
+            </div>
+
         </div>
     )
 }

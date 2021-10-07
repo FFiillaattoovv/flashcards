@@ -141,9 +141,8 @@ export const getPacksTC = () => (dispatch: Dispatch<ActionsType, any>, getState:
             console.log(error)
         })
 }
-export const addPackTC = () => (dispatch: Dispatch<ActionsType, any>) => {
-    packsAPI.addPack()
-export const addPackTC = (name: string) => (dispatch: Dispatch<ActionsType, null>) => {
+
+export const addPackTC = (name: string) => (dispatch: Dispatch<ActionsType, any>) => {
     packsAPI.addPack(name)
         .then(() => {
             dispatch(getPacksTC())
