@@ -143,6 +143,8 @@ export const getPacksTC = () => (dispatch: Dispatch<ActionsType, any>, getState:
 }
 export const addPackTC = () => (dispatch: Dispatch<ActionsType, any>) => {
     packsAPI.addPack()
+export const addPackTC = (name: string) => (dispatch: Dispatch<ActionsType, null>) => {
+    packsAPI.addPack(name)
         .then(() => {
             dispatch(getPacksTC())
         })

@@ -1,12 +1,6 @@
-import React, {ChangeEvent, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {
-    addCardTC,
-    CardType,
-    deleteCardTC,
-    editCardTC,
-    fetchCardsTC, setAnswerSearch, setCurrentPage, setMinMaxGrade, setPageCount, setQuestionSearch, setSortCards,
-} from "../../1-main/2-bll/cardsReducer";
+import {addCardTC, CardType, deleteCardTC, editCardTC, fetchCardsTC} from "../../1-main/2-bll/cardsReducer";
 import {AppRootStateType} from "../../1-main/2-bll/store";
 import styles from './Cards.module.css'
 import {useParams} from "react-router-dom";
@@ -17,6 +11,10 @@ import {SearchBar} from "../../1-main/1-ui/common/SearchBar";
 import {Pagination} from "../../1-main/1-ui/common/Pagination";
 import {formatDate} from "../../1-main/1-ui/utils/formatDate";
 import {RangeFilter} from "../../1-main/1-ui/common/RangeFilter";
+import {UpdateCardDataType} from "../../1-main/3-dal/cardsAPI";
+import Modal from "../5-modal/Modal";
+import {ModalWithTwoInput} from "../5-modal/children/ModalWithTwoInput";
+
 
 export function Cards() {
     const dispatch = useDispatch()
@@ -35,9 +33,12 @@ export function Cards() {
     const [searchValue, setSearchValue] = useState('')
     const {cardsPack_id} = useParams<{ cardsPack_id: string }>()
 
+    const [modalActive, setModalActive] = useState(false)
+
+
     useEffect(() => {
         dispatch(fetchCardsTC(cardsPack_id))
-    }, [])
+    }, [dispatch, cardsPack_id])
 
     if (!init) {
         return <div>Loading</div>
@@ -45,13 +46,7 @@ export function Cards() {
 
     //CRUD on cards
     const addCard = () => {
-        let card: AddCardDataType = {
-            cardsPack_id: cardsPack_id,
-            question: 'english',
-            answer: 'english',
-            grade: Math.abs(Math.random() * 10 - 5)
-        }
-        dispatch(addCardTC({card}))
+        setModalActive(true)
     }
 
     const deleteCard = (cardId: string, packId: string) => {
@@ -179,6 +174,10 @@ export function Cards() {
                         <button onClick={sortLowGrade}>low</button>
                     </th>
                     <th>{loggedUserId === packUserId && <button onClick={addCard}>Add</button>}Actions</th>
+                    <th>Grade</th>
+                    <th>{loggedUserId === packUserId &&
+                    <button className={styles.openBtn} onClick={addCard}>Add</button>}Actions
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -193,6 +192,10 @@ export function Cards() {
                         currentPage={currentPage}
                         pageSize={pageCount}
             />
+            <Modal active={modalActive} setActive={setModalActive}>
+                <ModalWithTwoInput cardsPack_id={cardsPack_id} action={addCardTC} setModalActive={setModalActive}/>
+            </Modal>
         </div>
+
     )
 }

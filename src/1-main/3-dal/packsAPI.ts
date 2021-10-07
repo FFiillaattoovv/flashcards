@@ -10,8 +10,8 @@ export const packsAPI = {
     getPacks(queryString: string) {
         return instance.get<GetPacksResponseType>(`cards/pack?${queryString}`)
     },
-    addPack() {
-        return instance.post<GetPacksResponseType>('cards/pack', {cardsPack: {name: 'English pack'}})
+    addPack(name: string) {
+        return instance.post<GetPacksResponseType>('cards/pack', {cardsPack: {name: name}})
     },
     deletePack(packId: string) {
         return instance.delete<GetPacksResponseType>(`cards/pack?id=${packId}`)

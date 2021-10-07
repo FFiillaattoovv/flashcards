@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "../2-profile/Profile.module.css";
 import {Range} from "../2-profile/Range";
 import {Header} from "../2-profile/Header";
@@ -18,10 +19,15 @@ import {PATH} from "../../1-main/1-ui/routes/Routes";
 import {Pagination} from "../../1-main/1-ui/common/Pagination";
 import {RangeFilter} from "../../1-main/1-ui/common/RangeFilter";
 import {fetchCardsTC, setMinMaxGrade} from "../../1-main/2-bll/cardsReducer";
+import {addPackTC, CardPacksType, getPacksTC} from "../../1-main/2-bll/packsReducer";
+import Modal from "../5-modal/Modal";
+import {ModalWithOneInput} from "../5-modal/children/ModalWithOneInput";
+
 
 const Packs = () => {
     const cardPacks = useSelector<AppRootStateType, Array<CardPacksType>>(state => state.packs.cardPacks)
     const userId = useSelector<AppRootStateType, string>(state => state.auth.userId)
+    const [modalActive, setModalActive] = useState(false)
     const pages = useSelector<AppRootStateType, number>(state => state.packs.pages)
     const page = useSelector<AppRootStateType, number | null>(state => state.packs.page)
     const pageCount = useSelector<AppRootStateType, number | null>(state => state.packs.pageCount)
@@ -39,7 +45,7 @@ const Packs = () => {
 
     //add new pack
     const addNewPackHandler = () => {
-        dispatch(addPackTC())
+        setModalActive(true)
     }
     //end add new pack
 
@@ -160,6 +166,9 @@ const Packs = () => {
                     />
                 </footer>
             </div>
+            <Modal active={modalActive} setActive={setModalActive}>
+                <ModalWithOneInput action={addPackTC} setModalActive={setModalActive}/>
+            </Modal>
         </div>
     );
 };
