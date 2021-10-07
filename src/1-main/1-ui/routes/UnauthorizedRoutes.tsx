@@ -18,7 +18,7 @@ function UnauthorizedRoutes() {
                 <Route path={PATH.CHECK_EMAIL} render={() => <CheckEmail/>}/>
                 <Route path={PATH.NEW_PASSWORD} render={() => <NewPassword/>}/>
                 <Route path={PATH.LOGIN} render={() => <Login/>}/>
-                <Route render={() => <Error404/>}/>
+                <Route path={'*'} render={() => <Error404/>}/>
             </Switch>
         </div>
     )

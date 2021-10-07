@@ -27,7 +27,7 @@ function Routes() {
     return (
         <div>
             <Switch>
-                <Route path={'/'} exact render={() => <Redirect to={PATH.LOGIN}/>}/>
+                <Route path={'/'} exact render={() => <Redirect to={PATH.PROFILE}/>}/>
                 <Route path={PATH.LOGIN} render={() => <Login/>}/>
                 <Route path={PATH.SIGN_UP} render={() => <SignUp/>}/>
                 <Route path={PATH.PROFILE} render={() => <Profile/>}/>
@@ -37,7 +37,7 @@ function Routes() {
                 <Route path={PATH.CHECK_EMAIL} render={() => <CheckEmail/>}/>
                 <Route path={PATH.NEW_PASSWORD} render={() => <NewPassword/>}/>
                 <Route path={PATH.TEST} render={() => <Test/>}/>
-                <Route render={() => <Error404/>}/>
+                <Route path={'*'} render={() => <Error404/>}/>
             </Switch>
         </div>
     )

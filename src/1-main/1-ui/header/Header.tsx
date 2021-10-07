@@ -18,10 +18,10 @@ function Header() {
         <div className={style.header}>
             <CustomNavLink title={'profile'} to={PATH.PROFILE}/>
             <CustomNavLink title={'packs'} to={PATH.PACKS}/>
-            <CustomNavLink title={'sign-up'} to={PATH.SIGN_UP}/>
-            <CustomNavLink title={'login'} to={PATH.LOGIN}/>
-            {/*<CustomNavLink title={'new password'} to={PATH.NEW_PASSWORD}/>*/}
-            <CustomNavLink title={'reset password'} to={PATH.RESET_PASSWORD}/>
+            {/*<CustomNavLink title={'sign-up'} to={PATH.SIGN_UP}/>*/}
+            {/*<CustomNavLink title={'login'} to={PATH.LOGIN}/>*/}
+            <CustomNavLink title={'change password'} to={PATH.RESET_PASSWORD}/>
+            {/*<CustomNavLink title={'cards'} to={PATH.CARDS}/>*/}
             <CustomNavLink title={'test'} to={PATH.TEST}/>
             <NavLink to={'/login'}><SuperButton color={"blue"} onClick={logoutHandler}>logout</SuperButton></NavLink>
         </div>

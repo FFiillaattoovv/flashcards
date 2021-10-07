@@ -49,8 +49,12 @@ const instance = axios.create({
 })
 
 export const cardsAPI = {
-    getCards(id: string) {
-        return instance.get<CardsResponseType>(`cards/card?cardsPack_id=${id}`)
+    getCards(cardsPack_id: string, optionals?: string) {
+        let queryString = `cards/card?cardsPack_id=${cardsPack_id}`
+        if (optionals) {
+            queryString = queryString.concat(optionals)
+        }
+        return instance.get<CardsResponseType>(queryString)
     },
     addCard(data: RequestAddCardType) {
         return instance.post(`cards/card`, data)

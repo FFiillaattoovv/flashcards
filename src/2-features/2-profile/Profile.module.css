@@ -99,10 +99,16 @@
 /* Header */
 
 .header {
+    display: flex;
+    flex-direction: column;
     width: 818px;
     padding: 14px 48px 14px 48px;
-
     background-color: #FEFEFF;
+}
+
+.headerFeatures {
+    display: flex;
+    flex-direction: row;
 }
 
 .header h1 {
@@ -123,6 +129,13 @@
     flex-direction: column;
 
     background-color: #FEFEFF;
+}
+
+.main .sortButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .listItem:nth-child(odd) {
@@ -167,19 +180,5 @@
 /* Footer */
 
 .footer {
-    margin: 20px auto;
-
     background-color: #FEFEFF;
-}
-
-.footer .pagination {
-    width: 24px;
-    height: 15px;
-    padding: 5px 10px;
-    margin-right: 20px;
-
-    background-color: #21268F;
-    border-radius: 2px;
-
-    color: #F2F5F7;
 }

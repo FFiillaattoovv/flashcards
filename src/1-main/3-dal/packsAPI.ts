@@ -7,9 +7,8 @@ const instance = axios.create({
 })
 
 export const packsAPI = {
-    getPacks(userId?: string) {
-        const id = userId ? `&user_id=${userId}` : ''
-        return instance.get<GetPacksResponseType>(`cards/pack?pageCount=8${id}`)
+    getPacks(queryString: string) {
+        return instance.get<GetPacksResponseType>(`cards/pack?${queryString}`)
     },
     addPack() {
         return instance.post<GetPacksResponseType>('cards/pack', {cardsPack: {name: 'English pack'}})

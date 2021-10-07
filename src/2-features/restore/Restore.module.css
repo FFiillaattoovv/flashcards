@@ -25,6 +25,13 @@
     height: 540px;
 }
 
+.restoreContainer .restoreForm .headers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .restoreContainer .restoreForm .error {
     display: inline-block;
     color: #dd3355;

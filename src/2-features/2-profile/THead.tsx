@@ -9,7 +9,9 @@ type ListHeaderPropsType = {
 export function THead(props: ListHeaderPropsType) {
     return (
         <tr className={classes.listItem}>
-            {props.headers.map(h => <th>{h}</th>)}
+            {props.headers.map(h => h === 'Last Updated'
+                ? <th>{h}</th>
+                : <th>{h}</th>)}
         </tr>
     )
 }

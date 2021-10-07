@@ -31,8 +31,10 @@ function ResetPassword() {
     return (
         <div className={style.restoreContainer}>
             <form className={style.restoreForm} onSubmit={submitEmail}>
-                <div>
-                    <h3>Forgot your password?</h3>
+                <div className= {style.headers}>
+                    <h3>Forgot your password</h3>
+                    <h3>or want to change it?</h3>
+                    <h4>Type your email and we will send you instructions</h4>
                 </div>
                 <div>
                     <SuperInputText
