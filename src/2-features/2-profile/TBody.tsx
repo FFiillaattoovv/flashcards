@@ -30,15 +30,14 @@ export function TBody(props: ListItemPropsType) {
                     }
 
                     return <tr className={classes.listItem} key={index}>
-                        <td>{item.name}</td>
+                        <td><NavLink to={`/cards/${item._id}`}>{item.name}</NavLink></td>
                         <td>{item.cardsCount}</td>
                         <td>{lastUpdated}</td>
                         <td>{userName}</td>
                         <td>
                             {loggedUserId === item.user_id && <button className={classes.btn} onClick={deletePackHandler}>{'Delete'}</button>}
                             {loggedUserId === item.user_id && <button style={{marginLeft: "10px"}} className={classes.btn} onClick={editPackHandler}>{'Edit'}</button>}
-                            <NavLink to={`/cards/${item._id}`}><button style={{marginLeft: "10px"}}
-                                    className={classes.btn}>{'Cards'}</button></NavLink>
+                            <button style={{marginLeft: "10px"}} className={classes.btn}>{'Learn'}</button>
                         </td>
                     </tr>
                 })

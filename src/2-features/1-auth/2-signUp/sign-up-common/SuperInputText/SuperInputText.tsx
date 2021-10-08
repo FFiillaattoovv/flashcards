@@ -39,7 +39,7 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = React.memo((
     }
 
     const finalSpanClassName = `${s.error} ${spanClassName ? spanClassName : ''}`
-    const finalInputClassName = `${s.input} ${error ? s.errorInput : s.superInput} ${className}`
+    //const finalInputClassName = `${s.input} ${error ? s.errorInput : s.superInput} ${className}`
 
     return (
         <div className={s.group}>

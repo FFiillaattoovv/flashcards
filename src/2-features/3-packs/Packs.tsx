@@ -1,7 +1,5 @@
-import React, {ChangeEvent, useState} from 'react';
-import React, {useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import classes from "../2-profile/Profile.module.css";
-import {Range} from "../2-profile/Range";
 import {Header} from "../2-profile/Header";
 import {Table} from "../2-profile/Table";
 import {useDispatch, useSelector} from "react-redux";
@@ -14,12 +12,8 @@ import {
     setPacksUserId, setSortPacksByDate
 } from "../../1-main/2-bll/packsReducer";
 import {SearchBar} from "../../1-main/1-ui/common/SearchBar";
-import {Redirect} from "react-router-dom";
-import {PATH} from "../../1-main/1-ui/routes/Routes";
 import {Pagination} from "../../1-main/1-ui/common/Pagination";
 import {RangeFilter} from "../../1-main/1-ui/common/RangeFilter";
-import {fetchCardsTC, setMinMaxGrade} from "../../1-main/2-bll/cardsReducer";
-import {addPackTC, CardPacksType, getPacksTC} from "../../1-main/2-bll/packsReducer";
 import Modal from "../5-modal/Modal";
 import {ModalWithOneInput} from "../5-modal/children/ModalWithOneInput";
 
@@ -32,15 +26,21 @@ const Packs = () => {
     const page = useSelector<AppRootStateType, number | null>(state => state.packs.page)
     const pageCount = useSelector<AppRootStateType, number | null>(state => state.packs.pageCount)
     const totalPacks = useSelector<AppRootStateType, number | null>(state => state.packs.cardPacksTotalCount)
-    const minCardsCount = useSelector<AppRootStateType, number>(state => state.packs.minCardsCount)
-    const maxCardsCount = useSelector<AppRootStateType, number>(state => state.packs.maxCardsCount)
+    const minCardsCount = useSelector<AppRootStateType, number | null>(state => state.packs.minCardsCount)
+    const maxCardsCount = useSelector<AppRootStateType, number | null>(state => state.packs.maxCardsCount)
     const dispatch = useDispatch()
     const [searchValue, setSearchValue] = useState('')
     const [minCardValue, setMinCardValue] = useState(minCardsCount)
     const [maxCardValue, setMaxCardValue] = useState(maxCardsCount)
 
-    if (cardPacks.length === 0) {
-        return <Redirect to={PATH.PROFILE}/>
+    useEffect(() => {
+        dispatch(getPacksTC())
+        setMinCardValue(minCardsCount)
+        setMaxCardValue(maxCardsCount)
+    }, [dispatch, minCardsCount, maxCardsCount])
+
+    if (minCardValue === null || maxCardValue === null) {
+        return <div>Loading</div>
     }
 
     //add new pack
@@ -112,8 +112,10 @@ const Packs = () => {
     }
 
     const onClickTotalCardsRangeFilter = () => {
-        dispatch(setMinMaxCardsInPack(minCardValue.toString(), maxCardValue.toString()))
-        dispatch(getPacksTC())
+        if (minCardValue !== null && maxCardValue !== null) {
+            dispatch(setMinMaxCardsInPack(minCardValue.toString(), maxCardValue.toString()))
+            dispatch(getPacksTC())
+        }
     }
     //end range filter by cards number
 
@@ -126,14 +128,15 @@ const Packs = () => {
                         <button onClick={getAllPacksHandler}>All</button>
                     </div>
                 </div>
-                <RangeFilter minValue={minCardValue}
-                             maxValue={maxCardValue}
+                <RangeFilter minValue={minCardValue!}
+                             maxValue={maxCardValue!}
                              onChangeRangeDouble={onChangeCardsRangeDouble}
                              onClickGradeRangeFilter={onClickTotalCardsRangeFilter}
-                             min={minCardsCount}
-                             max={maxCardsCount}
+                             min={minCardsCount!}
+                             max={maxCardsCount!}
                              step={1}
                 />
+
             </aside>
             <div className={classes.content}>
                 <header className={classes.header}>
