@@ -5,12 +5,7 @@ import {
     CardType,
     deleteCardTC,
     editCardTC,
-    fetchCardsTC,
-    setAnswerSearch,
-    setCurrentPage,
-    setMinMaxGrade,
-    setPageCount,
-    setQuestionSearch,
+    fetchCardsTC, setAnswerSearch, setCurrentPage, setMinMaxGrade, setPageCount, setQuestionSearch,
     setSortCards
 } from "../../1-main/2-bll/cardsReducer";
 import {AppRootStateType} from "../../1-main/2-bll/store";

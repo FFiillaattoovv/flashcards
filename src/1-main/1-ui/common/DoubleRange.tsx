@@ -13,15 +13,17 @@ type DoubleRangePropsType = {
 
 export const DoubleRange: React.FC<DoubleRangePropsType> = (
     {
-        onChangeRange, value,min, max, step
+        onChangeRange, value, min, max, step
         // min, max, step, disable, ...
     }
 ) => {
+    // console.log('DoubleRange', min, value && value[0], max, value && value[1])
     const onChangeCallback = (value: [number, number]) => {
         onChangeRange && onChangeRange(value)
     }
+
     // сделать самому, можно подключать библиотеки
     return (
-        <Slider style={{width: "500px"}} range={true} value={value} onChange={onChangeCallback} min={min} max={max} step={step}/>
+        <Slider style={{width: "500px"}} range={true}  value={value} onChange={onChangeCallback} min={min} max={max} step={step}/>
     )
 };

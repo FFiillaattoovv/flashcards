@@ -6,8 +6,8 @@ import {AppRootStateType} from "./store";
 const initialState: initialStateType = {
     cardPacks: [],
     cardPacksTotalCount: null,
-    maxCardsCount: 1,
-    minCardsCount: 0,
+    maxCardsCount: null,
+    minCardsCount: null,
     page: null,
     pageCount: null,
     pages: 0,
@@ -133,9 +133,9 @@ export const getPacksTC = () => (dispatch: Dispatch<ActionsType, any>, getState:
     packsAPI.getPacks(finalQueryString)
         .then((res) => {
             dispatch(setPacksAC(res.data))
-            dispatch(setPacksPages(res.data.cardPacksTotalCount % res.data.pageCount === 0
-                ? res.data.cardPacksTotalCount / res.data.pageCount
-                : Math.floor(res.data.cardPacksTotalCount / res.data.pageCount + 1)))
+            dispatch(setPacksPages(res.data.cardPacksTotalCount % res.data.pageCount !== 0 || res.data.cardPacksTotalCount === 0
+                ? Math.floor(res.data.cardPacksTotalCount / res.data.pageCount + 1)
+                : res.data.cardPacksTotalCount / res.data.pageCount))
         })
         .catch((error) => {
             console.log(error)
@@ -185,8 +185,8 @@ export type CardPacksType = {
 type initialStateType = {
     cardPacks: Array<CardPacksType>
     cardPacksTotalCount: number | null
-    maxCardsCount: number
-    minCardsCount: number
+    maxCardsCount: number | null
+    minCardsCount: number | null
     page: number | null
     pageCount: number | null
     pages: number

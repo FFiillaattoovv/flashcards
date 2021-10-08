@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {AddCardDataType, cardsAPI, RequestAddCardType, RequestUpdateCardType} from "../3-dal/cardsAPI";
+import {cardsAPI, RequestAddCardType, RequestUpdateCardType} from "../3-dal/cardsAPI";
 import {AppRootStateType} from "./store";
 
 type InitStateType = typeof initState

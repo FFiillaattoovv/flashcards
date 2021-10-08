@@ -1,7 +1,7 @@
 import React from "react";
 import {THead} from "./THead";
 import {TBody} from "./TBody";
-import {EntityListType, ItemsListType} from "./Profile";
+import {EntityListType} from "./Profile";
 import classes from "./Profile.module.css";
 import {CardPacksType} from "../../1-main/2-bll/packsReducer";
 

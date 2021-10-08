@@ -13,11 +13,16 @@ function UnauthorizedRoutes() {
         <div>
             <Switch>
                 <Route path={'/'} exact render={() => <Redirect to={PATH.LOGIN}/>}/>
+                <Route path={PATH.LOGIN} render={() => <Login/>}/>
                 <Route path={PATH.SIGN_UP} render={() => <SignUp/>}/>
                 <Route path={PATH.RESET_PASSWORD} render={() => <ResetPassword/>}/>
                 <Route path={PATH.CHECK_EMAIL} render={() => <CheckEmail/>}/>
                 <Route path={PATH.NEW_PASSWORD} render={() => <NewPassword/>}/>
-                <Route path={PATH.LOGIN} render={() => <Login/>}/>
+                {/*routes that are available only if you are authorized*/}
+                <Route path={PATH.PROFILE} render={() => <Login/>}/>
+                <Route path={PATH.PACKS} render={() => <Login/>}/>
+                <Route path={PATH.CARDS} render={() => <Login/>}/>
+                <Route path={PATH.TEST} render={() => <Login/>}/>
                 <Route path={'*'} render={() => <Error404/>}/>
             </Switch>
         </div>

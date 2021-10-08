@@ -13,6 +13,7 @@ type RangeFilterPropsType = {
 }
 
 export const RangeFilter = (props: RangeFilterPropsType) => {
+    // console.log('Rangefilter', props.min, props.max)
     return  (
         <div className={styles.rangeContainer}>
             <span>{props.minValue}</span>
