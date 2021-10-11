@@ -160,8 +160,8 @@ export const deletePackTC = (packId: string) => (dispatch: Dispatch<ActionsType,
             console.log(error)
         })
 }
-export const updatePackTC = (packId: string) => (dispatch: Dispatch<ActionsType, any>) => {
-    packsAPI.updatePack(packId)
+export const updatePackTC = (packId: string, name: string) => (dispatch: Dispatch<ActionsType, any>) => {
+    packsAPI.updatePack(packId, name)
         .then(() => {
             dispatch(getPacksTC())
         })
