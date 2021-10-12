@@ -5,7 +5,12 @@ import {
     CardType,
     deleteCardTC,
     editCardTC,
-    fetchCardsTC, setAnswerSearch, setCurrentPage, setMinMaxGrade, setPageCount, setQuestionSearch,
+    fetchCardsTC,
+    setAnswerSearch,
+    setCurrentPage,
+    setMinMaxGrade,
+    setPageCount,
+    setQuestionSearch,
     setSortCards
 } from "../../1-main/2-bll/cardsReducer";
 import {AppRootStateType} from "../../1-main/2-bll/store";
@@ -18,6 +23,7 @@ import {formatDate} from "../../1-main/1-ui/utils/formatDate";
 import {RangeFilter} from "../../1-main/1-ui/common/RangeFilter";
 import Modal from "../5-modal/Modal";
 import {ModalWithTwoInput} from "../5-modal/children/ModalWithTwoInput";
+import {ModalForCardEditing} from "../5-modal/children/ModalForCardEditing";
 
 
 export function Cards() {
@@ -36,8 +42,12 @@ export function Cards() {
     const [searchOption, setSearchOption] = useState(searchOptions[0])
     const [searchValue, setSearchValue] = useState('')
     const {cardsPack_id} = useParams<{ cardsPack_id: string }>()
-
+    const [editModalActive, setEditModalActive] = useState(false)
     const [modalActive, setModalActive] = useState(false)
+    const [cardId, setCardId] = useState<string | null>(null)
+    const [packId, setPackId] = useState<string | null>(null)
+    const [question, setQuestion] = useState<string | number | readonly string[] | undefined>('')
+    const [answer, setAnswer] = useState<string | number | readonly string[] | undefined>('')
 
 
     useEffect(() => {
@@ -59,15 +69,22 @@ export function Cards() {
         }
     }
 
-    const editCard = (cardId: string, packId: string) => {
-        let card: UpdateCardDataType = {
-            _id: cardId,
-            question: 'Updated question full of confusion',
-            answer: 'Updated Answer but simple as hell'
+    const editPackRequestHandler = (question: string, answer: string) => {
+        if (cardId) {
+            let card: UpdateCardDataType = {
+                _id: cardId,
+                question: question,
+                answer: answer
+            }
+            packId && dispatch(editCardTC({card}, packId))
         }
-        return () => {
-            dispatch(editCardTC({card}, packId))
-        }
+    }
+    const editPackModalHandler = (cardId?: string, packId?: string, question?: string, answer?: string) => {
+        cardId && setCardId(cardId)
+        packId && setPackId(packId)
+        question && setQuestion(question)
+        answer && setAnswer(answer)
+        setEditModalActive(true)
     }
     //end CRUD on cards
 
@@ -80,7 +97,9 @@ export function Cards() {
             <td>{card.grade}</td>
             {loggedUserId === packUserId ? <td>
                 <button onClick={deleteCard(card._id, card.cardsPack_id)}>Delete</button>
-                <button onClick={editCard(card._id, card.cardsPack_id)}>Edit</button>
+                <button
+                    onClick={() => editPackModalHandler(card._id, card.cardsPack_id, card.question, card.answer)}>Edit
+                </button>
             </td> : <td></td>}
         </tr>
     })
@@ -193,7 +212,16 @@ export function Cards() {
                         pageSize={pageCount}
             />
             <Modal active={modalActive} setActive={setModalActive}>
-                <ModalWithTwoInput cardsPack_id={cardsPack_id} action={addCardTC} setModalActive={setModalActive}/>
+                <ModalWithTwoInput cardsPack_id={cardsPack_id}
+                                   action={addCardTC}
+                                   setModalActive={setModalActive}/>
+            </Modal>
+            <Modal active={editModalActive} setActive={setEditModalActive}>
+                <ModalForCardEditing cardsPack_id={cardsPack_id}
+                                     question={question}
+                                     answer={answer}
+                                     action={editPackRequestHandler}
+                                     setModalActive={setEditModalActive}/>
             </Modal>
         </div>
 
